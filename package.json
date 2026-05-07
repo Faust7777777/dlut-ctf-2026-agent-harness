@@ -1,0 +1,17 @@
+{
+  "name": "dlut-ctf-2026",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DLUT CTF 2026 multi-agent automation: knowledge-race lookup, flag guard, Wenjuanxing exam assist.",
+  "scripts": {
+    "test": "node tests/test_wjx_assist_logic.js",
+    "wjx": "node scripts/wjx_exam_assist.js",
+    "lookup-svc": "python -m ctf_agents.knowledge.lookup_service --bank data/processed/question_bank_merged.json --port 8765"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "playwright": "1.59.1"
+  }
+}

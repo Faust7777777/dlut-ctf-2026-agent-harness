@@ -1,0 +1,53 @@
+project:
+  name: dlut-ctf-2026
+  timezone: Europe/Helsinki
+  event_window: "2026-05-10T13:00:00+08:00/2026-05-10T17:30:00+08:00"
+
+paths:
+  data_dir: data
+  raw_dir: data/raw
+  processed_dir: data/processed
+  logs_dir: logs
+  writeup_dir: writeups
+
+compliance:
+  competition_only: true
+  cloud_llm_allowed: false              # 组委会书面确认前保持 false
+  knowledge_pdf_to_cloud_allowed: false  # 题库全量默认不发云端
+  local_llm_mode_available: false
+  require_human_review_for_pwn_reverse: true
+  preserve_rule_screenshots: true
+
+scope:
+  allowed_domains: []      # 例：ctf.example.edu.cn
+  allowed_cidrs: []        # 例：10.10.0.0/16
+  allowed_ports: []        # 留空代表不额外限制；建议赛后补平台端口
+  deny_public_scan: true
+
+knowledge:
+  bank_json: data/processed/question_bank.json
+  lookup_top_k: 5
+  fuzzy_threshold: 82
+  require_answer_source: true
+
+submit:
+  adapter: dryrun          # dryrun / ctfd / gzctf / custom
+  auto_submit: false       # 默认 false；比赛时仍建议仅低风险题开启
+  min_conf_auto_submit: 0.92
+  min_conf_human_review: 0.70
+  max_wrong_per_challenge: 2
+  min_seconds_between_submits_global: 25
+  min_seconds_between_submits_per_challenge: 90
+  freeze_on_platform_error: true
+  flag_regex: "(?i)(flag|dlutctf)\\{[^{}\\s]{4,128}\\}"
+
+agent:
+  max_parallel_challenges: 3
+  stall_minutes_before_notify: 8
+  hard_stop_minutes_per_challenge: 25
+  default_cost_usd_per_challenge: 8
+  pwn_reverse_cost_usd_per_challenge: 18
+
+feishu:
+  enabled: false
+  mention_user_ids: []

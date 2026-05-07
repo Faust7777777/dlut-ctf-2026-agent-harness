@@ -1,0 +1,16 @@
+{
+  "answers": [
+    {
+      "number": 1,
+      "answer": ["B"]
+    },
+    {
+      "stem_contains": "以下哪些属于多选题正确答案",
+      "answer": ["A", "C"]
+    },
+    {
+      "stem_contains": "网络安全管理需要持续改进",
+      "answer": ["正确"]
+    }
+  ]
+}

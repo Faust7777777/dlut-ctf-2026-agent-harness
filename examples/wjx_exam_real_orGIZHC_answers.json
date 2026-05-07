@@ -1,0 +1,29 @@
+{
+  "answers": [
+    {
+      "number": 1,
+      "stem_contains": "我国的火警报警电话",
+      "answer": ["C"]
+    },
+    {
+      "number": 2,
+      "stem_contains": "四大文明古国",
+      "answer": ["A", "B", "C", "E"]
+    },
+    {
+      "number": 3,
+      "stem_contains": "先帝",
+      "answer": ["对"]
+    },
+    {
+      "number": 4,
+      "stem_contains": "《史记》的作者",
+      "answer": ["司马迁"]
+    },
+    {
+      "number": 5,
+      "stem_contains": "疑是地上霜",
+      "answer": ["床前明月光", "举头望明月"]
+    }
+  ]
+}

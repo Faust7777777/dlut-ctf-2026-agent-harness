@@ -1,0 +1,3162 @@
+{
+  "source_bank": "data/processed/question_bank_merged.json",
+  "generated_at": "2026-05-07T11:24:44.078421+00:00",
+  "target_n": 300,
+  "seed": 20260507,
+  "selection_policy": "stratified_by_type_and_source_largest_remainder_random_sample_then_source_order",
+  "answers": [
+    {
+      "number": 1,
+      "qid": "2020-content-0007",
+      "source": "2020-content",
+      "type": "single",
+      "stem_contains": "在互联网信息内容管理中，市场环境信息属于（）信息。",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 2,
+      "qid": "2020-content-0031",
+      "source": "2020-content",
+      "type": "single",
+      "stem_contains": "按照互联网的发展阶段，互联网治理可以划分为三个阶段，其中属于",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 3,
+      "qid": "2020-content-0078",
+      "source": "2020-content",
+      "type": "single",
+      "stem_contains": "计算机信息系统安全，是指信息系统保密性、完整性和可用性的安全",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 4,
+      "qid": "2020-content-0101",
+      "source": "2020-content",
+      "type": "single",
+      "stem_contains": "网民通过境内网络论坛、微博、微信等平台发布传播“发现恐怖分子",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 5,
+      "qid": "2020-content-0108",
+      "source": "2020-content",
+      "type": "single",
+      "stem_contains": "下列不属于受保护的个人电子数据的是( )。",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 6,
+      "qid": "2020-content-0150",
+      "source": "2020-content",
+      "type": "single",
+      "stem_contains": "根据《集会游行示威法》，游行、示威必须有负责人，并由其在举行",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 7,
+      "qid": "2020-content-0160",
+      "source": "2020-content",
+      "type": "single",
+      "stem_contains": "互联网信息服务提供者发现在其网站发布的信息有明显属于违规的危",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 8,
+      "qid": "2020-content-0168",
+      "source": "2020-content",
+      "type": "single",
+      "stem_contains": "著作权的权利内容包括发表权、署名权、修改权、保护作品完整权、",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 9,
+      "qid": "2020-content-0257",
+      "source": "2020-content",
+      "type": "single",
+      "stem_contains": "制作、复制、出版、贩卖、传播淫秽物品牟利罪（）以牟利为目的。",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 10,
+      "qid": "2020-content-0264",
+      "source": "2020-content",
+      "type": "single",
+      "stem_contains": "利用信息网络辱骂、恐吓他人，情节恶劣，破坏社会秩序的，以（）",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 11,
+      "qid": "2020-content-0270",
+      "source": "2020-content",
+      "type": "single",
+      "stem_contains": "有关互联网信息内容损害商业信誉和商品声誉的犯罪表述，不正确的",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 12,
+      "qid": "2020-content-0280",
+      "source": "2020-content",
+      "type": "single",
+      "stem_contains": "在网络上捏造事实诽谤他人的同一诽谤信息被转发次数超过500次",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 13,
+      "qid": "2020-content-0285",
+      "source": "2020-content",
+      "type": "single",
+      "stem_contains": "在社交网络上，为捏造事实而编造的虚假信息被转发500次以上最",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 14,
+      "qid": "2020-content-0339",
+      "source": "2020-content",
+      "type": "single",
+      "stem_contains": "网络安全审查中，特别审查程序一般应当在（）个工作日内完成，情",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 15,
+      "qid": "2020-content-0047",
+      "source": "2020-content",
+      "type": "multi",
+      "stem_contains": "互联网信息内容安全管理的主体具有多元性，包括( )。",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 16,
+      "qid": "2020-content-0048",
+      "source": "2020-content",
+      "type": "multi",
+      "stem_contains": "互联网信息内容安全管理“谁运营谁负责”原则中的运营主体包括(",
+      "answer": [
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 17,
+      "qid": "2020-content-0091",
+      "source": "2020-content",
+      "type": "multi",
+      "stem_contains": "我国互联网信息内容安全管理机构划分为专项监管机构和综合监管机",
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "number": 18,
+      "qid": "2020-content-0128",
+      "source": "2020-content",
+      "type": "multi",
+      "stem_contains": "依据《政府信息公开条例》，行政机关应当主动公开的信息包括（）",
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "number": 19,
+      "qid": "2020-content-0130",
+      "source": "2020-content",
+      "type": "multi",
+      "stem_contains": "以下关于比特币的说法不正确的是( )。",
+      "answer": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "number": 20,
+      "qid": "2020-content-0178",
+      "source": "2020-content",
+      "type": "multi",
+      "stem_contains": "网络著作权所保护的权利内容包括( )。",
+      "answer": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 21,
+      "qid": "2020-content-0321",
+      "source": "2020-content",
+      "type": "multi",
+      "stem_contains": "电信诈骗的被害人可能包括（）",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 22,
+      "qid": "2020-content-0001",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "信息包括在网络上传输的一切消息、信号、符号、数据、资料、情报",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 23,
+      "qid": "2020-content-0024",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "维护网络空间安全的四点原则是指和平原则、主权原则、共治原则和",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 24,
+      "qid": "2020-content-0025",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "网络主权是现实国家主权在虚拟社会中的延伸。",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 25,
+      "qid": "2020-content-0041",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "互联网信息内容安全管理涉及多方主体，包括互联网信息内容安全监",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 26,
+      "qid": "2020-content-0042",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "信息安全问题会影响一个国家的重要基础设施和信息系统的正常运转",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 27,
+      "qid": "2020-content-0043",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "互联网信息内容安全管理可以单纯依赖管理来解决信息安全问题。",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 28,
+      "qid": "2020-content-0111",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "违法有害信息概念的包容性体现在不仅涵盖了现有刑法体系下的多数",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 29,
+      "qid": "2020-content-0152",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "各网站不得为各种赌博游戏软件提供下载服务。",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 30,
+      "qid": "2020-content-0180",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "利用互联网侮辱他人或者捏造事实诽谤他人的犯罪行为适用我国《刑",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 31,
+      "qid": "2020-content-0184",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "在互联网环境下，非法截获、篡改、删除他人电子邮件或者其他数据",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 32,
+      "qid": "2020-content-0192",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "国际联网单位的登记备案制度程序可分为间接备案和直接备案。",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 33,
+      "qid": "2020-content-0199",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "根据我国相关制度，网络服务提供者为用户办理网站接入服务，应当",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 34,
+      "qid": "2020-content-0219",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "《信息安全技术 互联网交互式服务安全保护要求》规定，互联网交",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 35,
+      "qid": "2020-content-0224",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "网络安全应急处置工作预案的有效性应通过强大的技术团队进行推理",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 36,
+      "qid": "2020-content-0230",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "网络服务提供者和其他企业事业单位收集、使用公民个人电子信息，",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 37,
+      "qid": "2020-content-0239",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "国际联网单位登记备案制度的中心任务是通过使用单位在公安机关的",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 38,
+      "qid": "2020-content-0266",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "传授犯罪方法罪，是指传授犯罪方法的行为。本罪的主体是一般主体",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 39,
+      "qid": "2020-content-0293",
+      "source": "2020-content",
+      "type": "judge",
+      "stem_contains": "偷窥、偷拍、窃听、散布他人隐私的属于侵犯人身权利的行为。",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 40,
+      "qid": "2020-tech-0037",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "要各种软件系统来支持。（）软件安全技术是信息安全技术体系结构",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 41,
+      "qid": "2020-tech-0085",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "在基于角色的访问控制中，主体和角色是（）的关系。",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 42,
+      "qid": "2020-tech-0102",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "计算机机房的耐火等级应不低于（）级。",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 43,
+      "qid": "2020-tech-0168",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "（）用于对计算机或用户的身份进行鉴别与认证。",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 44,
+      "qid": "2020-tech-0228",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "、数据库交换等功能，同时已在电子政务中下列关于拒绝服务攻击说",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 45,
+      "qid": "2020-tech-0286",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "PKI系统组成不包含（）？",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 46,
+      "qid": "2020-tech-0361",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "时打开的其他网页都是不安全的，恶意网站Cookie的信息是加",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 47,
+      "qid": "2020-tech-0394",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "页合法性的是（）。（）利用这些事件，通过特定的高效算法对网页",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 48,
+      "qid": "2020-tech-0407",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "（）属于基于内容的过滤技术。",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 49,
+      "qid": "2020-tech-0409",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "的电子邮件是垃圾邮件。（）垃圾邮件过滤技术主要是通过电子邮件",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 50,
+      "qid": "2020-tech-0416",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "SSL协议提供用户和商户之间交换电子支付信息的安全通道，但不",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 51,
+      "qid": "2020-tech-0427",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "制能够确保一个用户不致对其他用户产生干操作系统的( )指的是",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 52,
+      "qid": "2020-tech-0434",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "访问同步。（）我国制定了强制性国家标准《计算机信息系统安全保",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 53,
+      "qid": "2020-tech-0452",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "且可以赋予组内成员一定的用户权限和对资能帮助阻止计算机病毒和",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 54,
+      "qid": "2020-tech-0483",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "（）指的是基于寄存器的虚拟机Dalvik。",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 55,
+      "qid": "2020-tech-0486",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "。Android系统把Permission划分为不同的安全级",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 56,
+      "qid": "2020-tech-0497",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "（）是指验证用户的身份是否真实、合法。",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 57,
+      "qid": "2020-tech-0519",
+      "source": "2020-tech",
+      "type": "single",
+      "stem_contains": "。有关数据库加密，下面说法不正确的是（）。",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 58,
+      "qid": "2020-tech-0030",
+      "source": "2020-tech",
+      "type": "multi",
+      "stem_contains": "关于安全服务与网络层次之间的对应关系，下面哪些网络层次可以提",
+      "answer": [
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 59,
+      "qid": "2020-tech-0044",
+      "source": "2020-tech",
+      "type": "multi",
+      "stem_contains": "接受者共享一些秘密信息(密钥)。（）下列属于对称密码机制的是",
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ]
+    },
+    {
+      "number": 60,
+      "qid": "2020-tech-0095",
+      "source": "2020-tech",
+      "type": "multi",
+      "stem_contains": "关于TCSEC说法不正确的是（）。",
+      "answer": [
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 61,
+      "qid": "2020-tech-0280",
+      "source": "2020-tech",
+      "type": "multi",
+      "stem_contains": "单点登录系统主要有？（）",
+      "answer": [
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 62,
+      "qid": "2020-tech-0308",
+      "source": "2020-tech",
+      "type": "multi",
+      "stem_contains": "PKI提供的核心服务包括了哪些信息安全的要求。（）",
+      "answer": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 63,
+      "qid": "2020-tech-0346",
+      "source": "2020-tech",
+      "type": "multi",
+      "stem_contains": "容灾技术有哪些类型？（）",
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 64,
+      "qid": "2020-tech-0352",
+      "source": "2020-tech",
+      "type": "multi",
+      "stem_contains": "的数据备份。（）备份系统的选择的原则是以很低的（）和很少的（",
+      "answer": [
+        "B",
+        "D"
+      ]
+    },
+    {
+      "number": 65,
+      "qid": "2020-tech-0558",
+      "source": "2020-tech",
+      "type": "multi",
+      "stem_contains": "属于计算机病毒的特性。计算机病毒，是指通过修改其他程序进行“",
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ]
+    },
+    {
+      "number": 66,
+      "qid": "2020-tech-0627",
+      "source": "2020-tech",
+      "type": "multi",
+      "stem_contains": "场阶段。（）从评估阶段上来看，SSAM(SSE－CMMApp",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 67,
+      "qid": "2020-tech-0628",
+      "source": "2020-tech",
+      "type": "multi",
+      "stem_contains": "风险评估能够对信息安全事故防患于未然，为信息系统的安全保障提",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 68,
+      "qid": "2020-tech-0011",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "物理与硬件安全是相对于物理破坏而言的。（）",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 69,
+      "qid": "2020-tech-0018",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "（）应用安全技术是指以保护特定应用为目的的安全技术。（）",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 70,
+      "qid": "2020-tech-0025",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "数据机密性就是保护信息不被泄漏或者不暴露给那些未经授权的实体",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 71,
+      "qid": "2020-tech-0075",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "访问控制策略一般无法用一个授权数据库来实现。（）",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 72,
+      "qid": "2020-tech-0081",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "限列表来表示。（）使用一维矩阵表示访问控制时，会产生比较大的",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 73,
+      "qid": "2020-tech-0082",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "在自主访问控制中，使用权限列表表示访问控制时，会产生比较大的",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 74,
+      "qid": "2020-tech-0120",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "偷盗、毁坏。机房外部的网络设备，应采取为了信息网络的运行，设",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 75,
+      "qid": "2020-tech-0122",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "是明显的无法除去的标记，以防更换和方便在现代社会，信息往往具",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 76,
+      "qid": "2020-tech-0126",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "准），是指在设计和生产计算机设备时，就防电磁辐射的干扰技术，",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 77,
+      "qid": "2020-tech-0190",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "部署防火墙环境时，绝不可将外部网络可访问的服务器放置在内部保",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 78,
+      "qid": "2020-tech-0195",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "入侵检测（Intrusion Detection）技术是用于",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 79,
+      "qid": "2020-tech-0202",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "入侵检测是系统动态安全的核心技术之一，入侵检测系统能够单独防",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 80,
+      "qid": "2020-tech-0213",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "攻击者常采用网络漏洞扫描技术来探测漏基于网络的漏洞扫描器不能",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 81,
+      "qid": "2020-tech-0275",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "FIDO协议中客户端的私钥只有在本地解锁后才能使用。（）",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 82,
+      "qid": "2020-tech-0302",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "PKI提供的核心服务包括完整性。（）",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 83,
+      "qid": "2020-tech-0306",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "PKI只提供安全服务。（）",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 84,
+      "qid": "2020-tech-0351",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "备份系统的选择的原则是以很低的系统资源占用率和很高的网络带宽",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 85,
+      "qid": "2020-tech-0367",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "通过内容安全策略(Content Security Poli",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 86,
+      "qid": "2020-tech-0368",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "片可以来自哪些网站，网页中可以加载哪些跨站脚本攻击的危害是可",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 87,
+      "qid": "2020-tech-0373",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "用户访问网页时，所有的请求都是通过HTTPGET请求实现的。",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 88,
+      "qid": "2020-tech-0374",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "在跨站请求伪造攻击中，攻击者伪装授权用户以访问授权网站。（）",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 89,
+      "qid": "2020-tech-0379",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "请求中加入只有浏览器中该源的网页可以获服务器安全需要为不同的",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 90,
+      "qid": "2020-tech-0402",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "少年因此而荒废学业，成为“网络海洛因”的为了提高工作效率，更",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 91,
+      "qid": "2020-tech-0423",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "应用程序建立在操作系统之上。（）",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 92,
+      "qid": "2020-tech-0431",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "控制用户对程序空间受限制部分的访问。对一般目标的定位和访问控",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 93,
+      "qid": "2020-tech-0463",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "户ID(UID)。（）特权用户可以变为任何别的用户，可以改变",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 94,
+      "qid": "2020-tech-0473",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "Linux中的ps命令是一个静态显示过程。（）",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 95,
+      "qid": "2020-tech-0474",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "在Unix/Linux系统中，为了使用NFS服务，必须运行r",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 96,
+      "qid": "2020-tech-0476",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "该命令是一个动态显示过程。DoS攻击是一种对网络危害巨大的恶",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 97,
+      "qid": "2020-tech-0480",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "Android是一个以windows为基础的开放源代码的操作",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 98,
+      "qid": "2020-tech-0508",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "管理员对他自己拥有的数据，不需要有指定一般意义上，可以把对数",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 99,
+      "qid": "2020-tech-0514",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "数据库中，表是最小的加密单位。（）",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 100,
+      "qid": "2020-tech-0538",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "的其他组件。（）一般的木马均具备自我复制能力。（）",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 101,
+      "qid": "2020-tech-0550",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "基于内存的Rootkit存在持久性代码。（）",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 102,
+      "qid": "2020-tech-0552",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "基于虚拟机的Rootkit可以透明地截获并修改目标操作系统的",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 103,
+      "qid": "2020-tech-0554",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "直接访问硬件。（）所有恶意代码都可以通过提升自身权限（如Ro",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 104,
+      "qid": "2020-tech-0567",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "户的数据、安装或删除设备上的任意应用，流氓软件类程序一般是强",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 105,
+      "qid": "2020-tech-0584",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "软件逆向工程通常包括两类：一类是从特定程序的完整代码出发，生",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 106,
+      "qid": "2020-tech-0617",
+      "source": "2020-tech",
+      "type": "judge",
+      "stem_contains": "息，该过程是双向的。（）数字摘要是保证消息完整性的一种技术。",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 107,
+      "qid": "2020-compliance-0012",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "（ ）应当统筹协调有关部门定期组织关键信息基础设施的运营者进",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 108,
+      "qid": "2020-compliance-0044",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "网络产品、服务的提供者设置恶意程序的，由有关主管部门责令改正",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 109,
+      "qid": "2020-compliance-0047",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "网络运营者为用户办理网络接入、域名注册服务，未要求用户提供真",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 110,
+      "qid": "2020-compliance-0077",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "从事提供专门用于从事危害网络安全活动的程序、工具的活动，受到",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 111,
+      "qid": "2020-compliance-0112",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "网络产品、服务具有（ ）的,其提供者应当向用户明示并取得同意",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 112,
+      "qid": "2020-compliance-0114",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "根据《网络安全法》的规定,（ ）应当为公安机关、国家安全机关",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 113,
+      "qid": "2020-compliance-0126",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "美国《儿童在线隐私保护法》适用于美国管辖之下的自然人或单位对",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 114,
+      "qid": "2020-compliance-0128",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "《信息安全等级保护管理办法》将信息系统的安全保护等级分为（ ",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 115,
+      "qid": "2020-compliance-0222",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "下面哪个机构负责统筹协调网络安全工作和相关监督管理工作（ ）",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 116,
+      "qid": "2020-compliance-0225",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "关键信息基础设施的运营者采购网络产品和服务，可能影响（ ）的",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 117,
+      "qid": "2020-compliance-0228",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "隔壁老王利用网络实施的下列哪些行为是违法的（ ）。",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 118,
+      "qid": "2020-compliance-0364",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "网络运营者应当加强对其用户发布的信息的管理，发现法律、行政法",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 119,
+      "qid": "2020-compliance-0369",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "接入网络必须通过（ ）进行国际联网",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 120,
+      "qid": "2020-compliance-0373",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "经营许可证由（ ）部门颁发。",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 121,
+      "qid": "2020-compliance-0384",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "网络借贷信息中介机构应当记录并留存借贷双方上网日志信息，信息",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 122,
+      "qid": "2020-compliance-0410",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "违反计算机信息系统安全等级保护制度，危害计算机信息系统安全的",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 123,
+      "qid": "2020-compliance-0476",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "《国家安全法》的制定主体是（ ）",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 124,
+      "qid": "2020-compliance-0477",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "违反《关于全国人民代表大会常务委员会关于加强网络信息保护的决",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 125,
+      "qid": "2020-compliance-0571",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "关于个人信息共享、转让，下列说法不正确的是（ ）：",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 126,
+      "qid": "2020-compliance-0584",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "为了确保电子邮件中邮件内容的安全，个人信息收集者收集应该采用",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 127,
+      "qid": "2020-compliance-0588",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "对于人肉搜索，应持有什么样的态度?",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 128,
+      "qid": "2020-compliance-0648",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "行政案件移送管辖的，询问查证时间和扣押等措施的期限（ ）计算",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 129,
+      "qid": "2020-compliance-0662",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "下列不属于网络犯罪案件的是?",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 130,
+      "qid": "2020-compliance-0663",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "网络犯罪案件的犯罪地不包括？",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 131,
+      "qid": "2020-compliance-0668",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "在调查取证时，人民警察不得少于（）人，并表明执法身份。",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 132,
+      "qid": "2020-compliance-0674",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "微博客服务提供者应当记录微博客服务使用者日志信息，保存时间不",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 133,
+      "qid": "2020-compliance-0695",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "根据《移动互联网应用程序信息服务管理规定》，按照相关原则，对",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 134,
+      "qid": "2020-compliance-0698",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "根据《关于办理诈骗刑事案件具体应用法律若干问题的解释》第一条",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 135,
+      "qid": "2020-compliance-0702",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "中华人民共和国网络安全法》规定，（ ）有权对危害网络安全的行",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 136,
+      "qid": "2020-compliance-0708",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "按照国务院规定的职责分工，负责关键信息基础设施安全保护工作的",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 137,
+      "qid": "2020-compliance-0714",
+      "source": "2020-compliance",
+      "type": "single",
+      "stem_contains": "根据《网络安全法》第29条的规定，国家支持网络运营者之间在（",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 138,
+      "qid": "2020-compliance-0041",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "网络运营者不履行“制定网络安全事件应急预案”义务的，由有关主",
+      "answer": [
+        "B",
+        "D"
+      ]
+    },
+    {
+      "number": 139,
+      "qid": "2020-compliance-0142",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "网络运营者开展经营和服务活动，必须（），接受政府和社会的监督",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 140,
+      "qid": "2020-compliance-0144",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "网络运营者应当按照网络安全等级保护制度的要求，保障网络免受干",
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 141,
+      "qid": "2020-compliance-0167",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "下列属于互联网信息内容妨害社会管理秩序犯罪的有（）",
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ]
+    },
+    {
+      "number": 142,
+      "qid": "2020-compliance-0256",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "下列哪些是个人信息？",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 143,
+      "qid": "2020-compliance-0260",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "根据《网络安全法》的规定，国务院和省、自治区、直辖市人民政府",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 144,
+      "qid": "2020-compliance-0274",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "根据《中华人民共和国保守国家秘密法》的相关规定，下列哪些情形",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 145,
+      "qid": "2020-compliance-0282",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "下列哪些行为可以，处五日以下拘留或者五百元以下罚款；情节较重",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 146,
+      "qid": "2020-compliance-0425",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "第三级以上信息系统应当选择使用符合以下条件的信息安全产品：",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "number": 147,
+      "qid": "2020-compliance-0430",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "《互联网安全保护技术措施规定》中，互联网服务提供者，是指（ ",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 148,
+      "qid": "2020-compliance-0434",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "下列哪些行为将会由公安机关责令限期改正，给予警告？",
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "number": 149,
+      "qid": "2020-compliance-0439",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "违反《计算机信息网络国际联网安全保护管理办法》（ ）规定，不",
+      "answer": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "number": 150,
+      "qid": "2020-compliance-0465",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "在发生或者可能发生个人信息泄露、毁损、丢失的情况时网络运营者",
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "number": 151,
+      "qid": "2020-compliance-0488",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "原告或者第三人不能自行收集，但能够提供确切线索的，可以申请人",
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "number": 152,
+      "qid": "2020-compliance-0490",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "以营利为目的，有下列哪些情形的，属于刑法第三百零三条规定的\"",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 153,
+      "qid": "2020-compliance-0498",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "互联网新闻信息服务单位未按要求整改，或经综合评估未达到整改要",
+      "answer": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 154,
+      "qid": "2020-compliance-0503",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "《互联网新闻信息服务管理规定》所称的新闻信息，包括有关（）等",
+      "answer": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 155,
+      "qid": "2020-compliance-0554",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "互联网信息搜索服务提供者不得以（）等形式提供含有法律法规禁止",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 156,
+      "qid": "2020-compliance-0596",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "个人信息控制者应向个人信息主体提供访问下列信息的方法（）：",
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "number": 157,
+      "qid": "2020-compliance-0601",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "个人数据及隐私保护，下列正确的是（）",
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "number": 158,
+      "qid": "2020-compliance-0726",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "根据《公安机关办理行政案件程序规定》的规定，对查获或者到案的",
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 159,
+      "qid": "2020-compliance-0738",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "调取电子数据，下列哪些做法正确?",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 160,
+      "qid": "2020-compliance-0740",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "违法事实确凿，且具有下列情形之一的，人民警察不可以当场作出处",
+      "answer": [
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 161,
+      "qid": "2020-compliance-0758",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "互联网论坛社区服务提供者开展经营和服务活动，必须（ ）。",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 162,
+      "qid": "2020-compliance-0762",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "按照《电子签名法》第三条的规定，当事人约定使用电子签名、数据",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 163,
+      "qid": "2020-compliance-0772",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "网络安全事件发生的风险增大时，省级以上人民政府有关部门应当按",
+      "answer": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 164,
+      "qid": "2020-compliance-0774",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "按照《关于办理侵犯知识产权刑事案件具体应用法律若干问题的解释",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 165,
+      "qid": "2020-compliance-0789",
+      "source": "2020-compliance",
+      "type": "multi",
+      "stem_contains": "按照《网络安全法》的有关规定，个人信息包括下列哪些类型：",
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 166,
+      "qid": "2020-compliance-0002",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "网络产品、服务必须符合国家标准的各项要求。",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 167,
+      "qid": "2020-compliance-0004",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "网络产品、服务具有收集用户信息功能的，其提供者只需向用户明示",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 168,
+      "qid": "2020-compliance-0033",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "负责关键信息基础设施安全保护工作的部门，应当建立健全本行业、",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 169,
+      "qid": "2020-compliance-0060",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "网络运营者为用户办理固定电话、移动电话等入网手续，或者为用户",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 170,
+      "qid": "2020-compliance-0061",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "网络运营者办理网络接入、域名注册服务，未要求用户提供真实身份",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 171,
+      "qid": "2020-compliance-0102",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "网络运营者不需要核实用户真实身份",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 172,
+      "qid": "2020-compliance-0115",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "根据网络安全法的规定，有关行业组织应加强对网络安全风险的分析",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 173,
+      "qid": "2020-compliance-0120",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "负责关键信息基础设施安全保护工作的部门应当制定本行业、本领域",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 174,
+      "qid": "2020-compliance-0198",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "网络运营者设置恶意程序的，有关主管部门可以责令改正，给予警告",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 175,
+      "qid": "2020-compliance-0217",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "网信部门和有关部门在履行网络安全保护职责中获取的信息，用于维",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 176,
+      "qid": "2020-compliance-0219",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "国家制定并不断完善网络安全战略，明确保障网络安全的基本要求和",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 177,
+      "qid": "2020-compliance-0286",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "网络运营者应当按照网络安全等级保护制度的要求，制定内部安全管",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 178,
+      "qid": "2020-compliance-0288",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "信息系统的安全保护等级确定后，运营、使用单位应当按照国家信息",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 179,
+      "qid": "2020-compliance-0308",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "提供互联网数据中心服务的单位，是指提供主机托管、租赁和虚拟空",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 180,
+      "qid": "2020-compliance-0309",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "开办门户网站、新闻网站、电子商务网站的，能够防范网站、网页被",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 181,
+      "qid": "2020-compliance-0311",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "提供互联网信息服务的单位在公共信息服务中发现违法信息时，应当",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 182,
+      "qid": "2020-compliance-0326",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "国家对互联网上网服务营业场所经营单位的经营活动实行许可制度。",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 183,
+      "qid": "2020-compliance-0328",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "互联网上网服务营业场所经营单位从事互联网上网服务经营活动，应",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 184,
+      "qid": "2020-compliance-0330",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "互联网上网服务营业场所经营单位应当通过依法取得经营许可证的互",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 185,
+      "qid": "2020-compliance-0332",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "互联网视听节目服务单位提供的、网络运营单位接入的视听节目应当",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 186,
+      "qid": "2020-compliance-0340",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "对拟确定为第四级以上信息系统的，运营、使用单位或者主管部门应",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 187,
+      "qid": "2020-compliance-0531",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "对存在重大违规情形的互联网新闻信息服务单位，由国家互联网信息",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 188,
+      "qid": "2020-compliance-0534",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "网络产品提供商发现其网络产品存在安全缺陷或漏洞时，应当根据代",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 189,
+      "qid": "2020-compliance-0613",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "收集年满14的未成年人的个人信息前，应征得其监护人的明示同意",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 190,
+      "qid": "2020-compliance-0620",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "隐私保护的安全监管是政府组织对大数据安全的需求之一",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 191,
+      "qid": "2020-compliance-0641",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "超出个人信息保存期限后，应对个人信息进行删除或匿名化处理。",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 192,
+      "qid": "2020-compliance-0807",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "严禁刑讯逼供和以威胁、欺骗等非法方法收集证据。采用刑讯逼供等",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 193,
+      "qid": "2020-compliance-0814",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "国家网信部门负责统筹协调网络安全工作和相关监督管理工作。国务",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 194,
+      "qid": "2020-compliance-0819",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "对管辖权发生争议的，报请共同的上级公安机关指定管辖。上级公安",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 195,
+      "qid": "2020-compliance-0827",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "网络刑事案件的初查过程中可以对初查对象采取强制措施和查封、扣",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 196,
+      "qid": "2020-compliance-0843",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "新建互联网络，必须经部（委）级行政主管部门批准后，向国务院信",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 197,
+      "qid": "2020-compliance-0844",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "接入网络必须通过互联网络进行国际联网，不得以其他方式进行国际",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 198,
+      "qid": "2020-compliance-0864",
+      "source": "2020-compliance",
+      "type": "judge",
+      "stem_contains": "关键信息基础设施的运营者采购网络产品和服务，可能影响国家安全",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 199,
+      "qid": "2020-practice-0058",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "公安部是国家授权对信息安全和网络安全进行监控和管理的职能机构",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 200,
+      "qid": "2020-practice-0059",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "（）是国家授权对信息安全和网络安全进行监控和管理的职能机构",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 201,
+      "qid": "2020-practice-0073",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "关于信息安全管理人员职责，安全审计管理员的主要职责不包括（）",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 202,
+      "qid": "2020-practice-0149",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "（）是指对系统所在环境的安全保护，如区域保护和灾难保护。",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 203,
+      "qid": "2020-practice-0166",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "安全域的划分应该以（）为主",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 204,
+      "qid": "2020-practice-0209",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "（）经济性好、周期短、所需资源少、操作简单，适合于环境和应用",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 205,
+      "qid": "2020-practice-0220",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "在威胁评估中，产生安全威胁的主要因素可以分为（）和环境因素。",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 206,
+      "qid": "2020-practice-0227",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "在安全措施识别中，安全控制措施可以分为（）和保护性控制措施两",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 207,
+      "qid": "2020-practice-0246",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "系统安全测试的深度宜由系统的重要性和（）确定",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 208,
+      "qid": "2020-practice-0260",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "网络安全预警的分级主要考虑两个要素：（）与网络安全保护对象可",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 209,
+      "qid": "2020-practice-0263",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "在网络安全预警分级中，由多个重要的网络安全保护对象共同组成的",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 210,
+      "qid": "2020-practice-0324",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "组织应该按照已设的（），定期备份和测试信息、软件和系统镜像的",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 211,
+      "qid": "2020-practice-0339",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "确定BCM战略时，（）要满足行业监管和利益相关方的要求",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 212,
+      "qid": "2020-practice-0364",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "在备份技术中，（）是最适合用来经常变更数据的备份。",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 213,
+      "qid": "2020-practice-0374",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "如果每一个计算机需要存储介质或者每一个用户有责任备份他们数据",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 214,
+      "qid": "2020-practice-0435",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "ISMS体系中，（）涉及全面质量管理活动的全部过程，就是质量",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 215,
+      "qid": "2020-practice-0451",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "信息安全方针和管理制度包括（）；适用性声明；程序文件；作业指",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 216,
+      "qid": "2020-practice-0477",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "系统安全工程能力成熟度模型将安全工程划分为三个基本的过程区域",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 217,
+      "qid": "2020-practice-0520",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "评估并决定是否将事态归类为信息安全事件属于信息安全事件管理过",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 218,
+      "qid": "2020-practice-0595",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "信息安全连续性控制措施与一般信息安全测试和验证不同，应在（）",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 219,
+      "qid": "2020-practice-0604",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "（）负责研究信息安全标准体系；跟踪国际标准发展动态；研究信息",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 220,
+      "qid": "2020-practice-0608",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "（）负责研究提出商用密码技术标准体系；研究制定商用密码算法、",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 221,
+      "qid": "2020-practice-0638",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "关键信息基础设施的运营者采购涉及商用密码的网络产品和服务，可",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 222,
+      "qid": "2020-practice-0639",
+      "source": "2020-practice",
+      "type": "single",
+      "stem_contains": "县级以上人民政府应当将密码工作纳入本级国民经济和社会发展规划",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 223,
+      "qid": "2020-practice-0035",
+      "source": "2020-practice",
+      "type": "multi",
+      "stem_contains": "PPDR模型由以下哪几个主要部分组成().",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 224,
+      "qid": "2020-practice-0037",
+      "source": "2020-practice",
+      "type": "multi",
+      "stem_contains": "在PPDR模型中，防护是安全的第一步，以下属于防护的包括（）",
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ]
+    },
+    {
+      "number": 225,
+      "qid": "2020-practice-0134",
+      "source": "2020-practice",
+      "type": "multi",
+      "stem_contains": "关于密钥，下面说法正确的是（）",
+      "answer": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 226,
+      "qid": "2020-practice-0144",
+      "source": "2020-practice",
+      "type": "multi",
+      "stem_contains": "物理安全的技术层面主要包括三个方面（）",
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    {
+      "number": 227,
+      "qid": "2020-practice-0169",
+      "source": "2020-practice",
+      "type": "multi",
+      "stem_contains": "网络安全域从大的方面一般可划分为四个部分（）",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 228,
+      "qid": "2020-practice-0298",
+      "source": "2020-practice",
+      "type": "multi",
+      "stem_contains": "针对风险合理的防御/控制措施也包括一些技术上的工作，如（）",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 229,
+      "qid": "2020-practice-0307",
+      "source": "2020-practice",
+      "type": "multi",
+      "stem_contains": "应急处置的收集信息阶段，使用技术机制是主要的渠道之一。技术机",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 230,
+      "qid": "2020-practice-0394",
+      "source": "2020-practice",
+      "type": "multi",
+      "stem_contains": "网络备份可以把需要备份的文件拷贝到目标机器上。应该定期验证目",
+      "answer": [
+        "B",
+        "E"
+      ]
+    },
+    {
+      "number": 231,
+      "qid": "2020-practice-0399",
+      "source": "2020-practice",
+      "type": "multi",
+      "stem_contains": "信息系统的灾难恢复工作，包括（）。",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 232,
+      "qid": "2020-practice-0405",
+      "source": "2020-practice",
+      "type": "multi",
+      "stem_contains": "单位应定期对灾难恢复预案进行演练、复审和修订，保证灾难恢复预",
+      "answer": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 233,
+      "qid": "2020-practice-0410",
+      "source": "2020-practice",
+      "type": "multi",
+      "stem_contains": "单位应定期对灾难恢复预案进行（），保证灾难恢复预案所涉及的组",
+      "answer": [
+        "A",
+        "C",
+        "E"
+      ]
+    },
+    {
+      "number": 234,
+      "qid": "2020-practice-0446",
+      "source": "2020-practice",
+      "type": "multi",
+      "stem_contains": "信息安全保障技术框架(IATF)从技术方面根据信息安全的需求",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 235,
+      "qid": "2020-practice-0582",
+      "source": "2020-practice",
+      "type": "multi",
+      "stem_contains": "国际标准化组织颁布的业务连续性相关的标准包括（）。",
+      "answer": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "number": 236,
+      "qid": "2020-practice-0648",
+      "source": "2020-practice",
+      "type": "multi",
+      "stem_contains": "远程办公系统具备在线会议功能的应做到（）",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 237,
+      "qid": "2020-practice-0651",
+      "source": "2020-practice",
+      "type": "multi",
+      "stem_contains": "云计算服务安全评估主要参照哪些标准？",
+      "answer": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "number": 238,
+      "qid": "2020-practice-0019",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "信息安全的保护对象是信息资产。",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 239,
+      "qid": "2020-practice-0031",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "风险管理一般包括资产评估、风险评估、风险处理、风险接受和风险",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 240,
+      "qid": "2020-practice-0036",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "在PPDR模型中，策略是这个模型的核心，即在发现异常或攻击行",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 241,
+      "qid": "2020-practice-0061",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "在系统日常运行及发生信息网络安全事件时，单位、组织可能需要电",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 242,
+      "qid": "2020-practice-0071",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "关于信息安全管理人员职责，负责设置和管理用户权限，维护系统安",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 243,
+      "qid": "2020-practice-0076",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "关于信息安全管理人员职责，认真记录系统安全事项，及时向信息安",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 244,
+      "qid": "2020-practice-0085",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "在录用信息安全人员时，应先签订《劳动合同》，后续再工作中根据",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 245,
+      "qid": "2020-practice-0092",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "在网络安全管理中，关于人员安全管理，对各个岗位和人员应定期对",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 246,
+      "qid": "2020-practice-0096",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "针对进入网络和信息系统工作的人员，保密协议的内容根据自身单位",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 247,
+      "qid": "2020-practice-0154",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "进入信息处理设施的电源和通信线路最好能铺设在空中。",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 248,
+      "qid": "2020-practice-0177",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "入侵检测就是对企图入侵进行识别的过程。",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 249,
+      "qid": "2020-practice-0185",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "计算机病毒具有自我复制能力，这种自我复制能力使其具有可传播性",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 250,
+      "qid": "2020-practice-0236",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "风险评估辅助工具包括脆弱点评估工具和渗透性测试工具",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 251,
+      "qid": "2020-practice-0248",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "根据《信息安全技术 信息安全事件分类分级指南》，对信息安全事",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 252,
+      "qid": "2020-practice-0305",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "应急处置的收集信息阶段，用户和系统管理员的警觉是收集信息的主",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 253,
+      "qid": "2020-practice-0308",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "如果安全事件发生了，重要的是保持镇定，不要惊慌失措，更不要引",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 254,
+      "qid": "2020-practice-0352",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "演练、维护和评审中，演练的方法包括桌面到部分或全部模拟演练等",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 255,
+      "qid": "2020-practice-0355",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "业务连续性管理框架中，BCM应对的就是小概率大灾难事件，通过",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 256,
+      "qid": "2020-practice-0382",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "针对海量数据备份，采用备份设施来拷贝数据并同时保证应用程序仍",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 257,
+      "qid": "2020-practice-0411",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "各单位灾难恢复策略的制定应有高层领导的参与，灾难恢复策略经决",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 258,
+      "qid": "2020-practice-0427",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "在《重要信息系统灾难恢复指南》中，第3级的灾难恢复能力是电子",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 259,
+      "qid": "2020-practice-0428",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "在《重要信息系统灾难恢复指南》中，第4级的灾难恢复能力是电子",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 260,
+      "qid": "2020-practice-0432",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "信息安全管理体系是组织整体管理体系的一个部分，是组织在整体或",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 261,
+      "qid": "2020-practice-0486",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "有害程序事件是指蓄意制造、传播计算机病毒，或是因受到计算机病",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 262,
+      "qid": "2020-practice-0493",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "在GB/Z 20986－2007《信息安全技术 信息安全事件",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 263,
+      "qid": "2020-practice-0510",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "信息安全事件管理是针对信息安全事件的规划、准备、发现、报告、",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 264,
+      "qid": "2020-practice-0539",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "公安机关建有国家、省、市级网络信息中心，负责网络与信息安全事",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 265,
+      "qid": "2020-practice-0557",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "经过审核和批准的应急响应计划文档由专人负责保存与分发",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 266,
+      "qid": "2020-practice-0598",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "国内最大的标准化技术委员会是全国信息技术安全标准化技术委员会",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 267,
+      "qid": "2020-practice-0646",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "为有效防范远程办公安全风险，使用方只要采用强有力的高新技术保",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 268,
+      "qid": "2020-practice-0660",
+      "source": "2020-practice",
+      "type": "judge",
+      "stem_contains": "2020年暑期在即，为给广大未成年人营造健康的上网环境，推动",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 269,
+      "qid": "2024-college-0007",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "网络安全等级保护制度中共有几个安全保护等级？",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 270,
+      "qid": "2024-college-0015",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "下列存在源码泄露风险相对较小的目录是（）。",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 271,
+      "qid": "2024-college-0019",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "电子数据取证的首要和核心要求是（）。",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 272,
+      "qid": "2024-college-0038",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "国密SM2 是（）?",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 273,
+      "qid": "2024-college-0053",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "以下哪项不是我们常说的身份管理4A 平台的功能？",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 274,
+      "qid": "2024-college-0060",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "SQLServer 默认具有DBA 权限的账号是什么？",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 275,
+      "qid": "2024-college-0073",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "某黑客组织通过拷贝银行官方网站的登录页面，然后发送欺骗性电子",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 276,
+      "qid": "2024-college-0075",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "在数据保护管理体系中，数据安全风险评估以（）为中心，重点关注",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 277,
+      "qid": "2024-college-0095",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "Web 应用防火墙（WAF）主要用于防御什么类型的攻击？",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 278,
+      "qid": "2024-college-0108",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "关于状态检测型防火墙和包过滤型防火墙描述正确的是？",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 279,
+      "qid": "2024-college-0110",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "基于全流量数据包检测，不能实现的功能是？",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 280,
+      "qid": "2024-college-0128",
+      "source": "2024-college",
+      "type": "single",
+      "stem": "网络路由器的访问控制列表（）的主要用途是什么?",
+      "stem_contains": "网络路由器的访问控制列表（ACL）的主要用途是什么？",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 281,
+      "qid": "2024-college-0129",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "等级保护定级过程中，等级保护对象受到破坏时对客体的侵害程度 ",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 282,
+      "qid": "2024-college-0135",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "根据《教育部关于加强教育行业网络与信息安全工作的指导意见》 ",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 283,
+      "qid": "2024-college-0139",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "以下哪项不属于等级保护工作的“规定动作”。",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 284,
+      "qid": "2024-college-0164",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "定期更新软件和操作系统最主要的原因是什么？",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 285,
+      "qid": "2024-college-0169",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "JWT（JSON Web Token）主要用于什么目的？",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 286,
+      "qid": "2024-college-0182",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "以下哪个不是常见数据库软件的缺省网络端口?",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 287,
+      "qid": "2024-college-0191",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "《中华人民共和国数据安全法》明确国家建立（）。",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 288,
+      "qid": "2024-college-0192",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "防范网页挂马攻击，作为第三方的普通浏览者，以下最实用有效的 ",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 289,
+      "qid": "2024-college-0201",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "在部署SSL/TLS 证书时，以下哪项做法是不安全的？",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 290,
+      "qid": "2024-college-0209",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "SQL 注入攻击的主要原因是什么？",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 291,
+      "qid": "2024-college-0213",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "全天候、（）感知网络安全态势。知己知彼，才能百战不殆。",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 292,
+      "qid": "2024-college-0229",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "以下属于校园网安全区域边界防护的设备是（）。",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 293,
+      "qid": "2024-college-0231",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "哪种类型的恶意软件是专门设计来阻止用户访问他们的系统或个人 ",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 294,
+      "qid": "2024-college-0236",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "以下不是利用操作系统自身漏洞进行攻击的是？",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 295,
+      "qid": "2024-college-0246",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "在Windows 系统中，什么是UAC（用户账户控制）？",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 296,
+      "qid": "2024-college-0250",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "SSL/TLS 加密的IMAP 使用哪个端口号？",
+      "answer": [
+        "D"
+      ]
+    },
+    {
+      "number": 297,
+      "qid": "2024-college-0258",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "如果域名example.com 没有MX 记录，向其发送邮件",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 298,
+      "qid": "2024-college-0269",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "要坚持以（）为中心的发展思想，推进“互联网＋教育” 、“互联",
+      "answer": [
+        "A"
+      ]
+    },
+    {
+      "number": 299,
+      "qid": "2024-college-0271",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "以校园网为例，关于信息系统定级，以下说法错误的是（）。",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 300,
+      "qid": "2024-college-0286",
+      "source": "2024-college",
+      "type": "single",
+      "stem_contains": "在网络设计中，以下哪个方式能更好地保证网络的弹性和可靠性？",
+      "answer": [
+        "C"
+      ]
+    }
+  ]
+}

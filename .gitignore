@@ -1,0 +1,66 @@
+.env
+.env.*
+!.env.example
+.auto_submit_off
+logs/
+__pycache__/
+*.pyc
+*.log
+node_modules/
+.cache/
+.venv/
+.coverage
+*.egg-info/
+
+# Local planning/session notes; convert important parts into docs/ before
+# publishing.
+task_plan.md
+findings.md
+progress.md
+
+# Local/operator-specific runtime config. Keep sanitized examples tracked.
+configs/config.yaml
+
+# Local CTF tool installs and downloaded archives are too large for Git.
+tools/bin/*
+!tools/bin/.gitkeep
+tools/bulk_extractor-install/
+tools/cargo/
+tools/cargo-root/
+tools/downloads/
+tools/ghidra/
+tools/go/
+tools/jadx/
+tools/rizin/
+tools/sage-env/
+tools/source/
+tools/xsser/
+tools/xsser-venv/
+
+# Raw source PDFs and office/editor lock files should stay local.
+data/raw/*.pdf
+data/raw/.~lock*
+data/raw/META.json
+
+# Third-party CTF challenge attachments are local fixtures, not repo source.
+data/external_ctf/
+
+# Generated intermediate extraction outputs. The merged bank is the runtime
+# artifact used by lookup_service.
+data/processed/*/
+
+# Generated visual audit artifacts.
+reports/
+!reports/.gitkeep
+reports/audit_page_renders/
+
+# Generated/local reports that contain runtime URLs or machine-specific paths.
+reports/wjx_*
+reports/tools_report*.md
+reports/python_packages_report*.md
+
+# Browser / test artifacts.
+*.png
+*.trace.zip
+playwright-report/
+test-results/

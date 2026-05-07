@@ -1,0 +1,94 @@
+{
+  "source_bank": "data/processed/question_bank_merged.json",
+  "answers": [
+    {
+      "number": 1,
+      "qid": "2020-content-0007",
+      "stem_contains": "在互联网信息内容管理中，市场环境信息属于（）信息",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 2,
+      "qid": "2020-content-0008",
+      "stem_contains": "在互联网信息内容安全管理中，产业界动向和竞争态势",
+      "answer": [
+        "C"
+      ]
+    },
+    {
+      "number": 3,
+      "qid": "2020-content-0009",
+      "stem_contains": "李某将银行卡与微信绑定进行支付，在这里她的银行卡",
+      "answer": [
+        "B"
+      ]
+    },
+    {
+      "number": 4,
+      "qid": "2020-content-0010",
+      "stem_contains": "互联网和计算机已经成为人类生活和生产的必备工具，",
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 5,
+      "qid": "2020-content-0011",
+      "stem_contains": "信息可以从国家信息、组织信息及个人信息三个层面界",
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ]
+    },
+    {
+      "number": 6,
+      "qid": "2020-content-0012",
+      "stem_contains": "一家网站报道了著名影星李某的一些信息，其中属于敏",
+      "answer": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    {
+      "number": 7,
+      "qid": "2020-content-0001",
+      "stem_contains": "信息包括在网络上传输的一切消息、信号、符号、数据",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 8,
+      "qid": "2020-content-0002",
+      "stem_contains": "信息内容安全对国家安全和社会稳定有重要影响。",
+      "answer": [
+        "对"
+      ]
+    },
+    {
+      "number": 9,
+      "qid": "2020-content-0003",
+      "stem_contains": "国家内部信息包括但不限于国家贸易、战争等信息。",
+      "answer": [
+        "错"
+      ]
+    },
+    {
+      "number": 10,
+      "qid": "2020-content-0004",
+      "stem_contains": "组织信息是一种物质形态的社会财富，可以划分为组织",
+      "answer": [
+        "错"
+      ]
+    }
+  ]
+}

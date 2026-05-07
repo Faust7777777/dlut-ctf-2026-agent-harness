@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Knowledge Question Bank",
+  "type": "object",
+  "required": [
+    "source",
+    "generated_at",
+    "questions"
+  ],
+  "properties": {
+    "source": {
+      "type": "object",
+      "properties": {
+        "pdf_path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        },
+        "parser_version": {
+          "type": "string"
+        }
+      }
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "qid",
+          "type",
+          "stem",
+          "answer",
+          "answer_source"
+        ],
+        "properties": {
+          "qid": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "single",
+              "multiple",
+              "true_false",
+              "unknown"
+            ]
+          },
+          "stem": {
+            "type": "string"
+          },
+          "stem_norm": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "key",
+                "text"
+              ],
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "text": {
+                  "type": "string"
+                },
+                "text_norm": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "answer": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "answer_text": {
+            "type": "string"
+          },
+          "answer_source": {
+            "type": "object",
+            "properties": {
+              "page": {
+                "type": "integer"
+              },
+              "line": {
+                "type": "integer"
+              },
+              "raw": {
+                "type": "string"
+              }
+            }
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

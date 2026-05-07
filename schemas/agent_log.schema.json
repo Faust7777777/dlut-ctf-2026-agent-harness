@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agent Event JSONL line",
+  "type": "object",
+  "required": [
+    "ts",
+    "run_id",
+    "event_type",
+    "actor",
+    "message"
+  ],
+  "properties": {
+    "ts": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "event_type": {
+      "enum": [
+        "challenge_seen",
+        "route_decision",
+        "tool_call",
+        "observation",
+        "hypothesis",
+        "flag_candidate",
+        "submit_decision",
+        "submit_result",
+        "human_review",
+        "notification",
+        "error",
+        "writeup_note"
+      ]
+    },
+    "actor": {
+      "type": "string"
+    },
+    "challenge_id": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "data": {
+      "type": "object"
+    },
+    "redacted": {
+      "type": "boolean"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "cost_usd_est": {
+      "type": "number",
+      "minimum": 0
+    },
+    "duration_ms": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

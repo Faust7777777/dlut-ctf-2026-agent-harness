@@ -1,0 +1,107 @@
+{
+  "source": {
+    "text_path": "data/raw/sample_bank.txt",
+    "parser_version": "heuristic-0.1"
+  },
+  "generated_at": "2026-05-07T00:20:24.299039+00:00",
+  "questions": [
+    {
+      "qid": "1",
+      "type": "single",
+      "stem": "下列哪项属于强密码特征？",
+      "stem_norm": "下列哪项属于强密码特征？",
+      "options": [
+        {
+          "key": "A",
+          "text": "使用生日",
+          "text_norm": "使用生日"
+        },
+        {
+          "key": "B",
+          "text": "长度足够且包含多类字符",
+          "text_norm": "长度足够且包含多类字符"
+        },
+        {
+          "key": "C",
+          "text": "与用户名相同",
+          "text_norm": "与用户名相同"
+        },
+        {
+          "key": "D",
+          "text": "只包含数字",
+          "text_norm": "只包含数字"
+        }
+      ],
+      "answer": [
+        "B"
+      ],
+      "answer_text": "B",
+      "answer_source": {
+        "page": -1,
+        "line": -1,
+        "raw": "答案：B"
+      },
+      "confidence": 0.95,
+      "tags": []
+    },
+    {
+      "qid": "2",
+      "type": "true_false",
+      "stem": "判断题：HTTPS 一定能防止服务端被入侵。",
+      "stem_norm": "判断题:https一定能防止服务端被入侵.",
+      "options": [],
+      "answer": [
+        "F"
+      ],
+      "answer_text": "错误",
+      "answer_source": {
+        "page": -1,
+        "line": -1,
+        "raw": "答案：错误"
+      },
+      "confidence": 0.95,
+      "tags": []
+    },
+    {
+      "qid": "3",
+      "type": "multiple",
+      "stem": "多选题：常见的 Web 安全风险包括哪些？",
+      "stem_norm": "多选题:常见的web安全风险包括哪些？",
+      "options": [
+        {
+          "key": "A",
+          "text": "SQL 注入",
+          "text_norm": "sql注入"
+        },
+        {
+          "key": "B",
+          "text": "XSS",
+          "text_norm": "xss"
+        },
+        {
+          "key": "C",
+          "text": "CSRF",
+          "text_norm": "csrf"
+        },
+        {
+          "key": "D",
+          "text": "正常登录",
+          "text_norm": "正常登录"
+        }
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "answer_text": "ABC",
+      "answer_source": {
+        "page": -1,
+        "line": -1,
+        "raw": "答案：ABC"
+      },
+      "confidence": 0.95,
+      "tags": []
+    }
+  ]
+}

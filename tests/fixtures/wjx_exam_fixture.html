@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>问卷星考试 MVP Fixture</title>
+  <style>
+    body { font-family: sans-serif; max-width: 840px; margin: 32px auto; line-height: 1.5; }
+    .field { border-bottom: 1px solid #ddd; padding: 18px 0; }
+    .field-label { font-weight: 700; margin-bottom: 10px; }
+    .ui-radio, .ui-checkbox { display: block; padding: 6px 0; cursor: pointer; }
+    .submitbutton { margin-top: 24px; padding: 10px 18px; }
+  </style>
+</head>
+<body>
+  <h1>自建考试测试页</h1>
+
+  <div class="field">
+    <div class="field-label">1. 以下哪一项属于单选题正确答案？</div>
+    <label class="ui-radio"><input type="radio" name="q1"> A. 错误选项</label>
+    <label class="ui-radio"><input type="radio" name="q1"> B. 正确选项</label>
+    <label class="ui-radio"><input type="radio" name="q1"> C. 干扰选项</label>
+    <label class="ui-radio"><input type="radio" name="q1"> D. 另一个干扰项</label>
+  </div>
+
+  <div class="field">
+    <div class="field-label">2. 以下哪些属于多选题正确答案？</div>
+    <label class="ui-checkbox"><input type="checkbox" name="q2"> A. 选项甲</label>
+    <label class="ui-checkbox"><input type="checkbox" name="q2"> B. 选项乙</label>
+    <label class="ui-checkbox"><input type="checkbox" name="q2"> C. 选项丙</label>
+    <label class="ui-checkbox"><input type="checkbox" name="q2"> D. 选项丁</label>
+  </div>
+
+  <div class="field">
+    <div class="field-label">3. 判断：网络安全管理需要持续改进。</div>
+    <label class="ui-radio"><input type="radio" name="q3"> 正确</label>
+    <label class="ui-radio"><input type="radio" name="q3"> 错误</label>
+  </div>
+
+  <button id="submit_button" class="submitbutton" type="button">提交</button>
+</body>
+</html>
