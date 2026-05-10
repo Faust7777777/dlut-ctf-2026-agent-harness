@@ -29,12 +29,11 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-import yaml
-
 PROJECT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT))
 
 from ctf_agents.common.logging_jsonl import JsonlLogger  # noqa: E402
+from ctf_agents.common.yaml_compat import safe_load_file  # noqa: E402
 from ctf_agents.skill.agents.mock import (  # noqa: E402
     make_bad_format_agent,
     make_low_confidence_agent,
@@ -63,7 +62,7 @@ def _wipe_state_for_run(state_path: Path) -> None:
 
 def main() -> int:
     cfg_path = PROJECT / "configs" / "config.yaml"
-    cfg = yaml.safe_load(cfg_path.read_text(encoding="utf-8"))
+    cfg = safe_load_file(cfg_path) or {}
 
     # Use a separate dryrun state file so we don't pollute the
     # production submission_state.json.

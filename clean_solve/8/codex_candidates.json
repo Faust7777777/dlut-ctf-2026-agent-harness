@@ -1,0 +1,14 @@
+[
+  {
+    "challenge_id": "draft",
+    "candidate": "HITCON{php 4nd mysq1 are s0 mag1c, isn't it?}",
+    "confidence": "high",
+    "evidence_paths": [
+      "extracted/config.php",
+      "extracted/index.php",
+      "evidence/flag_grep.txt"
+    ],
+    "submit_recommendation": "never_direct_submit",
+    "notes": "Source review of a Web bundle. Two independent extractions (grep + Python regex) both yield the same literal from config.php line 9."
+  }
+]

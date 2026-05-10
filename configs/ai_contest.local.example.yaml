@@ -1,0 +1,77 @@
+project:
+  name: dlut-local-gzctf-lab
+  timezone: Asia/Shanghai
+
+gzctf:
+  base_url: "http://127.0.0.1:8080"
+  game_id: 1
+  default_team_id: 2
+  auth_mode: "password"
+  username_env: "GZCTF_PLAYER_USERNAME"
+  password_env: "GZCTF_PLAYER_PASSWORD"
+  cookie_jar_path: "state/local-gzctf/gzctf_cookies.json"
+  submit_payload_mode: "plaintext"
+  api_public_key: ""
+  poll_timeout_s: 30.0
+  poll_interval_s: 1.0
+
+scope:
+  allowed_domains:
+    - "127.0.0.1"
+    - "localhost"
+  allowed_cidrs: []
+  deny_public_scan: true
+
+submit:
+  adapter: gzctf
+  auto_submit: true
+  # AI identity: every category auto-submits; no HUMAN_REVIEW branch.
+  auto_submit_categories:
+    - "misc"
+    - "forensics"
+    - "crypto"
+    - "web"
+    - "reverse"
+    - "pwn"
+  min_conf_auto_submit: 0.0
+  min_conf_human_review: 0.0
+  max_wrong_per_challenge: 1
+  min_seconds_between_submits_global: 1
+  min_seconds_between_submits_per_challenge: 1
+  flag_regex: "(?i)(flag|dlutctf|dasctf)\\{[^{}\\s]{4,200}\\}"
+  state_path: "state/local-gzctf/submission_state.json"
+  kill_switch_file: ".auto_submit_off"
+  force_submit_min_reason_length: 10
+  pwn_reverse_force_human_review: false
+
+agent:
+  enabled_categories:
+    - "misc"
+    - "forensics"
+    - "crypto"
+    - "web"
+    - "reverse"
+    - "pwn"
+  challenge_loop_interval_s: 5
+  challenge_solve_timeout_s: 120
+  global_run_timeout_s: 600
+  heartbeat_interval_s: 2
+
+paths:
+  state_dir: "state/local-gzctf"
+  artifacts_dir: "artifacts/local-gzctf"
+  logs_dir: "logs/local-gzctf"
+  locks_dir: "state/local-gzctf/locks"
+
+feishu:
+  enabled: false
+  mention_user_ids: []
+
+codex_sidecar:
+  enabled: false
+  max_parallel_tasks: 1
+  timeout_s: 120
+  allow_patch: false
+  allow_submit: false
+  allow_secret_read: false
+  artifact_root: "artifacts/local-gzctf/challenges"

@@ -1,0 +1,1 @@
+flag{local_reverse_static_ok}

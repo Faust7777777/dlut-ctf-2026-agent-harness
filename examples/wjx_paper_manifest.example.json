@@ -1,0 +1,33 @@
+{
+  "paper_id": "<short identifier for this wjx paper, e.g. mBfE06C>",
+  "url": "https://ks.wjx.com/vm/<paper_id>.aspx#",
+  "created_at": "2026-05-08T00:00:00+08:00",
+
+  "_comment_bank": "Identifies which question bank this paper was imported from. wjx_exam_assist verifies the bank file's sha256 matches before allowing --static-fallback-on-risk. Compute via: sha256sum data/processed/question_bank_merged.json",
+  "bank": {
+    "path": "data/processed/question_bank_merged.json",
+    "sha256": "REPLACE_WITH_REAL_SHA256_OF_THE_BANK_FILE_AT_IMPORT_TIME"
+  },
+
+  "_comment_static_answers": "Path AND sha256 of the per-import answers JSON. Both --answers (if passed) and the manifest-adopted file are hashed at startup; mismatch refuses static fallback. This closes the 'same-bank only' trust boundary.",
+  "static_answers": {
+    "path": "examples/dlut_bank_wjx_import_300_answers.json",
+    "sha256": "REPLACE_WITH_REAL_SHA256_OF_THE_ANSWERS_FILE_AT_IMPORT_TIME"
+  },
+
+  "_comment_overrides": "List of human-verified per-question truths that take precedence over lookup, EVEN over hard-block notes like negation_mismatch. Use only after dry-run confirms the wjx backend's correct answer differs from what the bank parser produced. If an override exists but cannot be mapped to the current page (option_count mismatch, label drift, etc.), the question is forced into HIGHLIGHT-ONLY — automation will NOT silently fall back to lookup/static.",
+  "verified_overrides": [
+    {
+      "number": 7,
+      "qid": "2020-content-0042",
+      "answer": ["B"],
+      "reason": "5/8 dry-run: wjx backend marks B; bank parser produced A due to truncated option text"
+    },
+    {
+      "number": 42,
+      "qid": "2020-tech-0588",
+      "answer": ["D"],
+      "reason": "5/8 dry-run: bank had stem truncation; wjx confirms single-answer D"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+hint1 bits = 2675
+hint2 #0: y bits=5342 a bits=1337 b bits=1334
+hint2 #1: y bits=5343 a bits=1336 b bits=1335
+building g over ZZ...
+  g.degree = 4, #monomials = 31
+constructing synthetic modulus N = 2^9500 - 1 ...
+  N has 15000 bits, factor leading coef and N coprime check follows
+  g lifted to Zmod(N) OK
+  gcd(leading_coef, N) = 1 bits
+
+--- attempt small_roots(m=2, d=2) ---
+...lattice running, this may take minutes...
+<string>:46: DeprecationWarning: the function coefficient_matrix is deprecated; use coefficients_monomials instead
+See https://github.com/sagemath/sage/issues/37035 for details.
+  roots returned: 1
+    (0, 0, 0, 0)
+
+--- attempt small_roots(m=3, d=2) ---
+...lattice running, this may take minutes...
+<string>:46: DeprecationWarning: the function coefficient_matrix is deprecated; use coefficients_monomials instead
+See https://github.com/sagemath/sage/issues/37035 for details.
+  roots returned: 1
+    (0, 0, 0, 0)
+
+=== NO_CANDIDATE ===
+Lattice did not return a valid small root that reconstructs a (p, q) pair satisfying p^2 + q^2 == hint1 with both prime.
+1

@@ -30,6 +30,16 @@ run_step "unit: flag_guard" python -m unittest tests.test_flag_guard
 run_step "unit: notifications" python -m unittest tests.test_notifications
 run_step "unit: skill_workflow" python -m unittest tests.test_skill_workflow
 run_step "unit: lookup_service (HTTP)" python -m unittest tests.test_lookup_service
+run_step "unit: paper_manifest" python -m unittest tests.test_paper_manifest
+run_step "unit: wjx_assist_e2e_rejection" python -m unittest tests.test_wjx_assist_e2e_rejection
+run_step "unit: gzctf_adapter" python -m unittest tests.test_gzctf_adapter
+run_step "unit: ai_contest_supervisor" python -m unittest tests.test_ai_contest_supervisor
+run_step "unit: route_control" python -m unittest tests.test_route_control
+run_step "unit: ai_contest_example_config_smoke" python -m unittest tests.test_ai_contest_example_config_smoke
+run_step "unit: run_real_llm_solve" python -m unittest tests.test_run_real_llm_solve
+run_step "unit: codex_sidecar" python -m unittest tests.test_codex_sidecar
+run_step "unit: sage_env_superset" python -m unittest tests.test_sage_env_superset
+run_step "unit: runtime_preflight" python -m unittest tests.test_runtime_preflight
 
 if command -v node >/dev/null 2>&1; then
   run_step "unit: wjx_assist_logic (node)" node tests/test_wjx_assist_logic.js
@@ -41,6 +51,9 @@ run_step "scan: option_anomaly_scan" python scripts/option_anomaly_scan.py
 run_step "smoke: lookup_engine" python scripts/smoke_test_lookup.py
 run_step "dryrun: skill_workflow" python scripts/skill_workflow_dryrun.py
 run_step "rehearsal: 5_9 scenarios" python scripts/rehearsal_5_9.py
+run_step "rehearsal: ai_identity" python scripts/rehearsal_ai_identity.py
+run_step "dryrun: codex_sidecar" python scripts/codex_sidecar_dryrun.py
+run_step "preflight: runtime capabilities" python scripts/runtime_preflight.py
 
 # Optional: real BJDCTF run only when fixtures are present locally
 if [[ -d "$ROOT_DIR/data/external_ctf/bjdctf2020-misc" ]]; then

@@ -1,0 +1,2 @@
+extracted/config.php:9:    $FLAG = "HITCON{php 4nd mysq1 are s0 mag1c, isn't it?}";
+captured: "HITCON{php 4nd mysq1 are s0 mag1c, isn't it?}"

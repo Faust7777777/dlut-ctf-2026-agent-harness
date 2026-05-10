@@ -132,6 +132,26 @@ def notify_force_submit(
     return {"sent": True, **send_text(webhook, msg, secret=secret), "preview": msg}
 
 
+def notify_accepted(
+    feishu_cfg: dict[str, Any],
+    *,
+    challenge_id: str,
+    category: str,
+    flag_redacted: str,
+    platform_response: str = "Accepted",
+) -> dict:
+    webhook, secret, do_send = _resolve_webhook(feishu_cfg)
+    msg = (
+        "[DLUT-CTF] 提交通过\n"
+        f"题目: {challenge_id} / {category}\n"
+        f"结果: {platform_response}\n"
+        f"候选: {flag_redacted}"
+    )
+    if not do_send:
+        return {"sent": False, "reason": "feishu disabled or webhook missing", "preview": msg}
+    return {"sent": True, **send_text(webhook, msg, secret=secret), "preview": msg}
+
+
 def notify_decision(feishu_cfg: dict[str, Any], decision: GuardDecision) -> dict[str, Any]:
     """Dispatch a guard decision to the matching Feishu notification.
 
@@ -177,9 +197,20 @@ def notify_submit_outcome(
 ) -> dict[str, Any]:
     """Notify on post-submit state transitions.
 
-    Currently only newly-frozen challenges are chat-worthy. Normal correct
-    submits stay in JSONL logs to avoid notification noise.
+    Newly-frozen challenges are always chat-worthy. Accepted submits are
+    opt-in via ``feishu.notify_accepted`` to avoid notification noise.
     """
+    if state_update.get("accepted") and bool(feishu_cfg.get("notify_accepted", False)):
+        return {
+            "event": "accepted",
+            **notify_accepted(
+                feishu_cfg,
+                challenge_id=decision.challenge_id,
+                category=decision.category,
+                flag_redacted=_redact_flag(decision.flag),
+                platform_response=str(state_update.get("platform_response") or "Accepted"),
+            ),
+        }
     if not state_update.get("newly_frozen"):
         return {"event": "none", "sent": False, "reason": "no notify-worthy outcome"}
     return {

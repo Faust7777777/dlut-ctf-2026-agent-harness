@@ -1,0 +1,3 @@
+This attachment intentionally contains a wrong candidate.
+flag{local_crypto_wrong_candidate}
+

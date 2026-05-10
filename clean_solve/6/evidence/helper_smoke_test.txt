@@ -1,0 +1,6 @@
+<string>:46: DeprecationWarning: the function coefficient_matrix is deprecated; use coefficients_monomials instead
+See https://github.com/sagemath/sage/issues/37035 for details.
+N bits = 512
+true root = (1016558464605, 371244445609)
+recovered roots (count=1): [(1016558464605, 371244445609)]
+smoke test PASS = True

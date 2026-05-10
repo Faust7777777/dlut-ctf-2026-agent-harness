@@ -1,0 +1,30 @@
+hint1 bits = 2675
+y_0 bits   = 5342,  a_0 bits = 1337,  b_0 bits = 1334
+y_1 bits   = 5343,  a_1 bits = 1336,  b_1 bits = 1335
+
+--- Plan A: eliminate p via cross-multiplication ---
+  cross-multiplied polynomial total degree: 4
+  |constant term| bit length: 8027
+  mass argument: leading monomials contribute ~2^6800 each,
+  unknowns each up to T = 2^338, target small-roots bound 2^587-2^670.
+
+--- Plan B: univariate small_roots(beta=...) ---
+  not applicable: n is not published in cid 6 output;
+  Sage's small_roots requires a known modulus with a
+  divisor we are bounding.  hint1 = p^2 + q^2 is not a
+  modulus we can factor in the small_roots sense.
+
+--- Plan C: fpylll Herrmann-May/Jochemsz-May from scratch ---
+  feasible in principle, but multivariate Coppersmith
+  implementations require careful basis construction and
+  bound tuning specific to the polynomial shape.  Estimated
+  effort: 200-400 lines of new code + several iterations on
+  beta/epsilon tuning.  Beyond the 30-min wallclock budget.
+
+=== conclusion ===
+cid 6 requires multivariate Coppersmith; not available as a
+packaged primitive in Sage 10.8 and not implementable
+from scratch within the time budget for this run.
+Returning NO_CANDIDATE; the lattice setup above (Plan A's
+cross-multiplied polynomial g and its bit-length analysis)
+is the artifact a future Sage worker can pick up directly.

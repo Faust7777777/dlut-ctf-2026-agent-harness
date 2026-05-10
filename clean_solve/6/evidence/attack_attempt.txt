@@ -1,0 +1,8 @@
+hint1 has 2675 bits
+parsed 2 hint2 entries
+entry 0: p_approx_bits=1338 residual_bits=2668
+entry 1: p_approx_bits=1338 residual_bits=2668
+p_approx diff bits: 1335
+p_approx_0 prime probe: False
+conclusion: residual ~2668 bits dominates; recovery requires LLL/Coppersmith.
+environment: CPython only, no sage. NO_CANDIDATE.

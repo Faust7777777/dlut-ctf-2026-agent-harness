@@ -1,0 +1,158 @@
+# Formal contest configuration template for the DLUT skill-contest
+# AI-identity run. The knowledge contest may be handled by humans and
+# separate tooling; this config is only for the GZCTF skill contest.
+#
+# Contest-day AI identity source of truth:
+#   runbooks/contest_day_ai_identity.md
+# Solve-first loop policy:
+#   docs/solve_first_loop_policy.md
+#   docs/loop_prompt_solve_first.md
+#
+# Fill in the real GZCTF host/game id and credentials before the
+# contest-day healthcheck. Do not copy rehearsal/local values here.
+
+project:
+  name: dlut-ai-identity
+  timezone: Asia/Shanghai
+
+gzctf:
+  # Real DUT::CTF deployed at http://202.118.70.251 (校内 IP, externally
+  # unreachable). Reach it via DLUT WebVPN path-rewriter.  See
+  # /home/wuwai/dlut_ctf/HANDOFF.md and
+  # artifacts/contest-day-readiness/2026-05-10-tick1-assessment.md.
+  base_url: "https://webvpn.dlut.edu.cn/http/57787a7876706e323032336b657940242a485056ad52cb00fd1cb46ac4ea/"
+  game_id: 1                              # placeholder; will be confirmed via /api/game and updated on first healthcheck
+  default_team_id: null                   # optional, only if multi-team is used
+
+  # auth_mode = "auto" | "password" | "cookie".
+  # WebVPN-proxied GZCTF needs both:
+  #   1. wengine_vpn_ticket cookie pre-loaded (see cookie_jar_path)
+  #      so that webvpn lets requests through to the GZCTF backend.
+  #   2. password POST to /api/account/login (through the tunnel) to
+  #      mint the GZCTF session cookie.  GZCTF's cookie is auto-renamed
+  #      by wengine and managed inside the requests.Session jar.
+  # Therefore auth_mode "auto": cookies are checked first, but the
+  # adapter will fall through to password POST on the same session.
+  auth_mode: "auto"
+  username_env: "GZCTF_USERNAME"
+  password_env: "GZCTF_PASSWORD"
+  cookie_jar_path: ".secrets/gzctf_cookies.json"   # gitignored
+  submit_payload_mode: "auto"             # plaintext | encrypted | auto
+  api_public_key: ""                      # required only if mode=encrypted
+  poll_timeout_s: 90.0
+  poll_interval_s: 3.0
+
+scope:
+  # Adapter scope guard checks every URL against this allowlist; only
+  # the WebVPN front host is reachable for this contest.
+  allowed_domains:
+    - "webvpn.dlut.edu.cn"
+  url_rewrites: {}
+  allowed_cidrs: []
+  deny_public_scan: true
+
+submit:
+  adapter: gzctf
+  auto_submit: true
+  # AI identity has no human reviewer, so every category is in the
+  # auto-submit set.  Hard gates (format / duplicate / rate-limit /
+  # freeze / kill-switch / CheatDetected) still apply.
+  auto_submit_categories:
+    - "misc"
+    - "forensics"
+    - "crypto"
+    - "web"
+    - "reverse"
+    - "pwn"
+  # AI identity: no human in the loop.  Confidence thresholds are 0.0
+  # so a valid candidate (format ok, not duplicate, not frozen, etc.)
+  # is never demoted to HUMAN_REVIEW because of category or score.
+  min_conf_auto_submit: 0.0
+  min_conf_human_review: 0.0
+  max_wrong_per_challenge: 1              # AI identity: 1 strike -> freeze
+  min_seconds_between_submits_global: 60
+  min_seconds_between_submits_per_challenge: 300
+  # Real DUT::CTF 2026 uses DUTCTF{...} prefix (verified from challenge
+  # 11 'checkin' EXIF/trailer.  Include the original DLUT/DAS variants
+  # plus a generic flag{...} catch-all in case any imported challenge
+  # uses upstream prefixes.
+  flag_regex: "(?i)(flag|dutctf|dlutctf|dasctf)\\{[^{}\\s]{4,200}\\}"
+  state_path: "state/submission_state.json"   # guard state; supervisor state is state/ai_contest_state.json
+  kill_switch_file: ".auto_submit_off"
+  force_submit_min_reason_length: 10
+  pwn_reverse_force_human_review: false
+
+agent:
+  # AI identity dispatches all six categories autonomously.  Categories
+  # without a registered built-in agent fall through to the
+  # route-control NO_CANDIDATE flow if no Codex sidecar candidate is
+  # produced.
+  enabled_categories:
+    - "misc"
+    - "forensics"
+    - "crypto"
+    - "web"
+    - "reverse"
+    - "pwn"
+  challenge_loop_interval_s: 30           # how often to re-sync game
+  challenge_solve_timeout_s: 600          # per-challenge agent budget
+  global_run_timeout_s: 14400             # whole contest cap (4h)
+  heartbeat_interval_s: 60
+
+paths:
+  state_dir: "state"
+  artifacts_dir: "artifacts"
+  logs_dir: "logs"
+  locks_dir: "state/locks"
+
+feishu:
+  enabled: false
+  notify_accepted: true
+  mention_user_ids: []
+
+# Codex sidecar = candidate ingestion path.  When enabled, the
+# supervisor reads artifacts/challenges/<id>/codex_candidates.json,
+# validates each entry against the strict schema in
+# runbooks/codex_sidecar.md, and treats the first confidence=high
+# entry whose evidence paths exist inside the sandbox as the submit
+# candidate (preferring it over the built-in agent).  This is the
+# only path by which Opus's solve-first work reaches the submit
+# chain (FlagGuard -> GZCTFAdapter), since the built-in agents
+# cannot solve unfamiliar contest challenges.  See solve-first
+# policy in docs/solve_first_loop_policy.md.
+codex_sidecar:
+  enabled: true
+  max_parallel_tasks: 1
+  timeout_s: 600
+  allow_patch: true
+  allow_submit: false
+  allow_secret_read: false
+  artifact_root: "artifacts/challenges"
+
+# OpenAI expert sidecar (P2, advisory only). Disabled in the formal
+# contest config unless explicitly enabled by the solve-first operator.
+expert_sidecar:
+  enabled: false
+  provider: deepseek
+  default_model: deepseek-v4-pro
+  hard_model: deepseek-v4-pro
+  api_base_url: "https://api.deepseek.com"
+  api_key_env: DEEPSEEK_API_KEY
+  reasoning_effort: high
+  max_calls_total: 8
+  max_calls_per_challenge: 1
+  timeout_s: 600
+  max_input_files: 20
+  max_attachment_mb: 20
+  budget_usd_soft_limit: 30
+  allowed_categories:
+    - misc
+    - forensics
+    - crypto
+    - reverse
+    - web
+  disallowed_paths:
+    - .env
+    - .secrets
+    - state
+    - logs

@@ -77,6 +77,14 @@ from ctf_agents.submit.state_store import (  # noqa: E402
 )
 
 
+# Generic FlagGuard rehearsal config — intentionally NOT the AI-identity
+# profile.  Several scenarios (mock_workflow_full_paths, kill_switch,
+# freeze) need to drive HUMAN_REVIEW / HOLD branches that the AI-identity
+# yaml configs deliberately bypass (categories all in auto_submit, score
+# thresholds 0.0).  These values stay as legacy "every Guard branch is
+# reachable" defaults so the dress rehearsal can still verify the
+# underlying state machine.  See runbooks/guard_policy.md for the
+# AI-identity profile (no HUMAN_REVIEW branch from category/confidence).
 SUBMIT_CFG_TEMPLATE: dict[str, Any] = {
     "auto_submit": True,
     "auto_submit_categories": ["misc", "forensics"],

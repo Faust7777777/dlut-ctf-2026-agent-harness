@@ -1,0 +1,15 @@
+[
+  {
+    "challenge_id": "draft",
+    "candidate": "hitcon{howsgiraffesfeeling?no!youonlythinkofyourself}",
+    "confidence": "high",
+    "evidence_paths": [
+      "extracted/config.php",
+      "extracted/index.php",
+      "extracted/index.tpl.html",
+      "evidence/flag_grep.txt"
+    ],
+    "submit_recommendation": "never_direct_submit",
+    "notes": "Source review of a Web bundle. Two independent regexes (grep + Python) extract identical literal from config.php line 8. Single-quoted; regex tolerated both quote styles."
+  }
+]

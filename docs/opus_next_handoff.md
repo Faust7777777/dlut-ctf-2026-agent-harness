@@ -2,6 +2,24 @@
 
 本文用于给 Opus 4.7 接续主开发。Codex 当前角色是 review、测试、小修和验收，不接管主开发。
 
+## 2026-05-08 重要更新：技能赛改按 AI 身份准备
+
+先读新文档：
+
+- `docs/opus_ai_identity_handoff.md`
+
+用户和 Codex 已根据 Pro 分析重新定方向：**技能赛现在按 AI 身份路线准备，最终是否选择 AI 身份由 5/9 真实 GZCTF 单 Prompt 彩排决定。**
+
+旧文档里“学生身份/人类操作/runbook 优先”的描述不要作为当前技能赛主线。当前 P0 是：
+
+1. GZCTF adapter 最小闭环。
+2. `ai_contest_supervisor.py` 确定性状态机。
+3. guard 与 supervisor 集成。
+4. mock + 真实 GZCTF single-prompt rehearsal。
+5. 5/9 Go/No-Go 报告。
+
+Codex 已确认 GZCTF API 文档可用：`https://gzctf.gzti.me/scalar.html`。接口不是未知项；5/9 主要验证真实部署鉴权、附件、容器、submit payload mode（plaintext/encrypted）和 status polling。
+
 ## 当前结论
 
 项目已经从“能不能做”进入“彩排和赛前冻结”阶段。
@@ -304,6 +322,74 @@ E、资料(正确答案)
 - 不记录短信验证码。
 - 不记录手机号全量，必要时只记录脱敏后四位。
 - 身份信息只记录字段已填，不记录真实值。
+
+### 问卷星导入稿、原题库、运行时兜底三层分离
+
+后续不要把下面三层混成一层：
+
+> 详细约束见本文件 `docs/opus_next_handoff.md` 的这一节。Opus 先读这里，再看聊天摘要，避免把原 bank、导入稿和运行时兜底混在一起。
+
+1. **原始题库层**
+   - 来源是 PDF 解析后的 `question_bank_merged.json`
+   - 这里保留解析结果和原始答案，不因为某个问卷星测试卷改动
+
+2. **问卷星导入稿层**
+   - 这是给学校/测试问卷用的单独导入文本或答案表
+   - 它可以和原始 bank 不同，因为人工导入时可能改过、修过、补过
+   - 如果某份问卷星测试卷里某题的后台真值和原 bank 不一致，那说明导入稿层和原 bank 不一致
+   - 这种情况不要回写原 bank，应该单独修导入稿或在该卷配置里做 override
+
+3. **运行时兜底层**
+   - 这是 `wjx_exam_assist.js` 在真实问卷星页面上的行为
+   - 优先级建议如下：
+
+```text
+verified_override > lookup_service > static fallback > LLM suggestion > human review
+```
+
+   - `verified_override` 只用于已确认的问卷星卷内真值冲突，例如某题在该卷里和原 bank 不同
+   - `lookup_service` 仍是主路径，按题干/选项匹配出答案
+   - `static fallback` 只用于本地同 bank 导入的题目，解决低分或无匹配
+   - `LLM suggestion` 只做兜底建议，不直接改 bank，不直接提交
+   - 只要和已验证真值冲突，直接人工确认
+
+### 大模型兜底建议
+
+LLM 建议做成“建议器”，不是“拍板器”：
+
+- 只在这些情况触发：
+  - `lookup_no_match`
+  - `no_answer_letters`
+  - `stem_score` 太低
+  - 少量 `single_option_close_second`
+- 明确不触发：
+  - `negation_mismatch`
+  - `manual_review_required:*`
+- 输出只要结构化 JSON，不要直接写页面：
+
+```json
+{
+  "qid": "2024-college-0128",
+  "suggested_answer": ["C"],
+  "confidence": 0.64,
+  "needs_human_review": true,
+  "reason": "page/import mismatch"
+}
+```
+
+- 规则建议：
+  - LLM 和确定性结果一致且置信度足够高，才允许自动高亮/点击
+  - 只要冲突，就进入人工确认
+  - 不自动提交
+
+### 对这类冲突题的处理口径
+
+后续不要把任何这类冲突题当成“原始 PDF 题库错了”。
+
+- 原始 bank 保持不动
+- 如果这份问卷星测试卷的后台真值和原 bank 不一致，那是导入稿/卷内配置的问题
+- 需要单独修导入稿，不回写原 bank
+- 运行时如果没有 override，就人工确认
 
 ### A2 真实 Misc
 

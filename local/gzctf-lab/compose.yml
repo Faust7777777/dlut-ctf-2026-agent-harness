@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:alpine
+    container_name: local-gzctf-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: gzctf
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: LocalGZCTFDB2026!
+    volumes:
+      - ./data/db:/var/lib/postgresql
+
+  gzctf:
+    image: gztime/gzctf:latest
+    container_name: local-gzctf
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      ASPNETCORE_URLS: http://0.0.0.0:8080
+      GZCTF_ADMIN_PASSWORD: LocalGZCTFAdmin2026!
+    volumes:
+      - ./appsettings.json:/app/appsettings.json:ro
+      - ./data/files:/app/files
+      - /var/run/docker.sock:/var/run/docker.sock
+

@@ -64,3 +64,20 @@ reports/python_packages_report*.md
 *.trace.zip
 playwright-report/
 test-results/
+
+# Bearer credentials: campus SSO cookie jars, GZCTF API tokens.  Treat
+# every file under this directory as if it were ~/.ssh.  See
+# runbooks/campus_sso_cookie_reuse.md for the export procedure.
+.secrets/
+*.cookies.json
+
+# Runtime state and downloaded challenge artifacts: machine-local,
+# may carry partially-redacted flags / cookies / platform IDs from
+# real contest runs.  Never commit.  Codex review §2 hygiene fix.
+state/
+artifacts/
+
+# Local GZCTF rehearsal assets and operator-specific config.
+configs/ai_contest.local.yaml
+local/gzctf-lab/.env
+local/gzctf-lab/data/

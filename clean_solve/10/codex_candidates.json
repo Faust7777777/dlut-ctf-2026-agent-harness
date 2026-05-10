@@ -1,0 +1,14 @@
+[
+  {
+    "challenge_id": "draft",
+    "candidate": "picoCTF{16_bits_inst34d_of_8_26684c20}",
+    "confidence": "high",
+    "evidence_paths": [
+      "extracted/script.py",
+      "extracted/enc",
+      "evidence/decode_run.txt"
+    ],
+    "submit_recommendation": "never_direct_submit",
+    "notes": "Solved by running the bundled decoder script against the bundled encoded payload, captured to evidence/decode_run.txt. Cross-checked by re-implementing the unpack manually."
+  }
+]

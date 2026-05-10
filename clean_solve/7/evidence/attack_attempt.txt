@@ -1,0 +1,33 @@
+hint bits = 754, D = 15515568475732467854453889, n bits = 2674
+isqrt(n) bits = 1337
+A = h^2//D^2 has 1339 bits
+p+q candidate bracket: [1338, 1338, 1338, 1338, 1338]
+
+found 0 integer-root solutions for p+q candidates
+
+--- second-pass analysis ---
+hint = D*(sqrt(p)+sqrt(q)).  D ~ 2^83, hint ~ 2^753.
+truncation error in S = sqrt(p)+sqrt(q) is ~ 1/D ~ 2^-83
+induced error in S^2 = p+q+2*sqrt(n) is ~ 2*S/D ~ 2^669
+p+q has ~2675 bits, so we recover only ~83 of those bits from hint.
+
+Without an additional channel (e.g. lattice on p+q from these ~84 leaked bits + n) this is unsolvable in CPython.
+After augmenting the solver runtime, reran with tools/bin/sage-python.
+
+Successful path:
+- Use hint/D as a lower-bound estimate of sqrt(p)+sqrt(q).
+- Derive s0 ~= p+q via s0 = round((hint/D)^2 - 2*sqrt(n)).
+- Derive q0 from the quadratic discriminant of t^2 - s0*t + n.
+- q is within < 2^600 of q0, below the Coppersmith univariate bound.
+- Sage recovered the small root of (x + q0) mod n with X=2^600,
+  beta=0.5, epsilon=0.04.
+- The resulting factor pair verifies p*q == n.
+- Goldwasser-Micali bit decrypt with Legendre symbols produced a UTF-8
+  DUCTF flag.
+
+Command:
+../../tools/bin/sage-python evidence/solve_cid7.py
+
+Output:
+p_bits=1337 q_bits=1337 c_len=479
+DUCTF{wh0_N33ds_pr3cIsi0n_wh3n_y0u_h4v3_c0pp3rsmiths_M3thod}

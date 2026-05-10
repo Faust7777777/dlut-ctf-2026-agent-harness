@@ -50,7 +50,7 @@ import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 
 _SUBMIT_HISTORY_LIMIT = 50
@@ -269,6 +269,66 @@ class SubmissionStateStore:
                 "correct": correct,
                 "flag_redacted": _redact_flag(flag),
                 "force": bool(force),
+            }
+            if platform_response:
+                entry["platform_response"] = platform_response[:200]
+            ch.setdefault("submits", []).append(entry)
+            if len(ch["submits"]) > _SUBMIT_HISTORY_LIMIT:
+                ch["submits"] = ch["submits"][-_SUBMIT_HISTORY_LIMIT:]
+
+            newly_frozen = False
+            if not ch.get("frozen", False) and ch["wrong_count"] >= int(max_wrong):
+                ch["frozen"] = True
+                ch["frozen_at_iso"] = now_iso
+                newly_frozen = True
+
+            self._save(payload)
+            return {
+                "challenge_id": challenge_id,
+                "wrong_count": ch["wrong_count"],
+                "frozen": ch["frozen"],
+                "newly_frozen": newly_frozen,
+                "ts": now_iso,
+            }
+
+    def record_outcome_for_pending(
+        self,
+        challenge_id: str,
+        *,
+        flag_redacted: str,
+        correct: Optional[bool],
+        max_wrong: int,
+        force: bool = False,
+        platform_response: Optional[str] = None,
+    ) -> dict:
+        """Apply a terminal outcome from the pending-resolve path.
+
+        Same shape as :meth:`record_submit` but takes the already-redacted
+        flag string instead of plaintext.  The supervisor uses this so
+        ``state/ai_contest_state.json`` never has to persist plaintext
+        flags between submit and pending terminalisation.  Codex review
+        §2 hygiene fix.
+        """
+        with _file_lock(self.lock_path):
+            payload = self._load()
+            now_unix = time.time()
+            now_iso = datetime.now(timezone.utc).isoformat()
+
+            ch = payload["challenges"].setdefault(challenge_id, self._empty_challenge())
+            ch["last_submit_unix"] = now_unix
+            ch["last_submit_iso"] = now_iso
+            payload["global_last_submit_unix"] = now_unix
+            payload["global_last_submit_iso"] = now_iso
+
+            if correct is False:
+                ch["wrong_count"] = int(ch.get("wrong_count", 0)) + 1
+
+            entry: dict[str, Any] = {
+                "ts": now_iso,
+                "correct": correct,
+                "flag_redacted": flag_redacted or "",
+                "force": bool(force),
+                "via": "pending_resolve",
             }
             if platform_response:
                 entry["platform_response"] = platform_response[:200]

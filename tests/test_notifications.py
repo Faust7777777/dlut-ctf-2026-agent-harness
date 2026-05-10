@@ -97,6 +97,46 @@ class NotificationDispatchTest(unittest.TestCase):
         )
         self.assertEqual(out2["event"], "none")
 
+    def test_accepted_outcome_dispatches_only_when_enabled(self) -> None:
+        decision = GuardDecision(
+            action=Decision.AUTO_SUBMIT,
+            challenge_id="misc-accepted",
+            category="misc",
+            flag="flag{accepted-candidate}",
+        )
+
+        with patch("ctf_agents.submit.notifications.notify_accepted") as mocked:
+            mocked.return_value = {"sent": False, "preview": "accepted"}
+            out = notify_submit_outcome(
+                {"enabled": False, "notify_accepted": True},
+                decision=decision,
+                state_update={
+                    "accepted": True,
+                    "newly_frozen": False,
+                    "platform_response": "Accepted",
+                },
+                max_wrong=1,
+            )
+
+        self.assertEqual(out["event"], "accepted")
+        mocked.assert_called_once()
+        kwargs = mocked.call_args.kwargs
+        self.assertEqual(kwargs["challenge_id"], "misc-accepted")
+        self.assertEqual(kwargs["category"], "misc")
+        self.assertIn("flag{a", kwargs["flag_redacted"])
+
+        out2 = notify_submit_outcome(
+            {"enabled": False, "notify_accepted": False},
+            decision=decision,
+            state_update={
+                "accepted": True,
+                "newly_frozen": False,
+                "platform_response": "Accepted",
+            },
+            max_wrong=1,
+        )
+        self.assertEqual(out2["event"], "none")
+
     def test_force_submit_result_dispatches_notification(self) -> None:
         with patch("ctf_agents.submit.notifications.notify_force_submit") as mocked:
             mocked.return_value = {"sent": False, "preview": "force"}

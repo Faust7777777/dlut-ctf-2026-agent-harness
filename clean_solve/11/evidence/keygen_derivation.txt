@@ -1,0 +1,9 @@
+prefix='picoCTF{1n_7h3_|<3y_of_'
+suffix='}'
+username='GOUGH'
+dynamic length=8
+sha256-hex indices in verifier order: [4, 5, 3, 6, 2, 7, 1, 8]
+sha256('GOUGH')=e8a1f9146d32473b9605568ca66f7b5c2db9f271f57a8c8e9e121e48accddf2f
+derived dynamic='f911a486'
+
+flag=picoCTF{1n_7h3_|<3y_of_f911a486}

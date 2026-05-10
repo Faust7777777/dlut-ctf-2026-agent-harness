@@ -1,0 +1,145 @@
+# AI-identity contest configuration.
+#
+# Per docs/opus_ai_identity_handoff.md, AI identity track requires:
+#   - one prompt to start the supervisor
+#   - no human intervention after t+10min
+#   - guard is the only submit gate
+#   - max one wrong attempt per challenge before freeze
+#
+# Under AI identity there is no human reviewer.  Every category is in
+# the auto-submit set and confidence thresholds are 0.0, so a valid
+# candidate is never routed to HUMAN_REVIEW.  Only hard gates remain
+# active: format / duplicate / rate-limit / freeze / kill-switch /
+# CheatDetected.
+#
+# Copy this to configs/ai_contest.yaml and fill in the GZCTF base URL,
+# game id, and credentials (or rely on env vars in .env).
+
+project:
+  name: dlut-ai-identity
+  timezone: Asia/Shanghai
+
+gzctf:
+  base_url: "https://gzctf.example.com"   # 5/9 培训时填真实地址
+  game_id: 1                              # /api/game 列出后填
+  default_team_id: null                   # optional, only if multi-team
+
+  # auth_mode = "auto" | "password" | "cookie".
+  #   auto     – try cookies if loaded, else POST password
+  #   password – always POST username+password
+  #   cookie   – verify pre-loaded cookies via /api/account/profile;
+  #              never sends a password.  Use this when the platform
+  #              is behind campus SSO and a Windows browser session
+  #              has been exported via the procedure in
+  #              runbooks/campus_sso_cookie_reuse.md.
+  auth_mode: "auto"
+  username_env: "GZCTF_USERNAME"          # read from .env (auto/password)
+  password_env: "GZCTF_PASSWORD"
+  cookie_jar_path: ".secrets/gzctf_cookies.json"   # gitignored
+  submit_payload_mode: "auto"             # plaintext | encrypted | auto
+  api_public_key: ""                      # required only if mode=encrypted
+  poll_timeout_s: 90.0
+  poll_interval_s: 3.0
+
+scope:
+  allowed_domains:
+    - "gzctf.example.com"                 # base host
+  allowed_cidrs: []
+  deny_public_scan: true
+
+submit:
+  adapter: gzctf
+  auto_submit: true
+  # AI identity has no human reviewer, so every category is in the
+  # auto-submit set.  Hard gates (format / duplicate / rate-limit /
+  # freeze / kill-switch / CheatDetected) still apply.
+  auto_submit_categories:
+    - "misc"
+    - "forensics"
+    - "crypto"
+    - "web"
+    - "reverse"
+    - "pwn"
+  # AI identity: no human in the loop.  Confidence thresholds are 0.0
+  # so a valid candidate (format ok, not duplicate, not frozen, etc.)
+  # is never demoted to HUMAN_REVIEW because of category or score.
+  min_conf_auto_submit: 0.0
+  min_conf_human_review: 0.0
+  max_wrong_per_challenge: 1              # AI identity: 1 strike → freeze
+  min_seconds_between_submits_global: 60
+  min_seconds_between_submits_per_challenge: 300
+  flag_regex: "(?i)(flag|dlutctf|dasctf)\\{[^{}\\s]{4,200}\\}"
+  state_path: "state/submission_state.json"
+  kill_switch_file: ".auto_submit_off"
+  force_submit_min_reason_length: 10
+  pwn_reverse_force_human_review: false
+
+agent:
+  # All six categories are dispatched.  Categories without a registered
+  # built-in agent (e.g. pwn/web) fall through to the route-control
+  # NO_CANDIDATE flow if no Codex sidecar candidate is produced.
+  enabled_categories:
+    - "misc"
+    - "forensics"
+    - "crypto"
+    - "web"
+    - "reverse"
+    - "pwn"
+  challenge_loop_interval_s: 30           # how often to re-sync game
+  challenge_solve_timeout_s: 600          # per-challenge agent budget
+  global_run_timeout_s: 14400             # whole contest cap (4h)
+  heartbeat_interval_s: 60
+
+paths:
+  state_dir: "state"
+  artifacts_dir: "artifacts"
+  logs_dir: "logs"
+  locks_dir: "state/locks"
+
+feishu:
+  enabled: false
+  mention_user_ids: []
+
+# Codex sidecar (P2, not on the critical contest path).
+# See runbooks/codex_sidecar.md for install/verification and the
+# sandbox contract.  The current supervisor only reads enabled; keep
+# allow_submit / allow_secret_read false as explicit audit defaults.
+codex_sidecar:
+  enabled: false
+  max_parallel_tasks: 1
+  timeout_s: 600
+  allow_patch: true
+  allow_submit: false
+  allow_secret_read: false
+  artifact_root: "artifacts/challenges"
+
+# OpenAI expert sidecar (P2, advisory only).
+# It is intentionally not wired into the supervisor by default.  When
+# manually invoked from the solve-first loop, it may read one challenge
+# artifact directory and write expert_notes.md / expert_candidates.json.
+# Any candidate still has to pass the sidecar validator and FlagGuard.
+expert_sidecar:
+  enabled: false
+  provider: deepseek
+  default_model: deepseek-v4-pro
+  hard_model: deepseek-v4-pro
+  api_base_url: "https://api.deepseek.com"
+  api_key_env: DEEPSEEK_API_KEY
+  reasoning_effort: high
+  max_calls_total: 8
+  max_calls_per_challenge: 1
+  timeout_s: 600
+  max_input_files: 20
+  max_attachment_mb: 20
+  budget_usd_soft_limit: 30
+  allowed_categories:
+    - misc
+    - forensics
+    - crypto
+    - reverse
+    - web
+  disallowed_paths:
+    - .env
+    - .secrets
+    - state
+    - logs

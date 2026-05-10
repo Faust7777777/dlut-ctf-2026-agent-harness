@@ -1,0 +1,16 @@
+[
+  {
+    "challenge_id": "7",
+    "category": "Crypto",
+    "candidate": "DUCTF{wh0_N33ds_pr3cIsi0n_wh3n_y0u_h4v3_c0pp3rsmiths_M3thod}",
+    "confidence": "high",
+    "submit_recommendation": "never_direct_submit",
+    "evidence_paths": [
+      "extracted/1337crypt.sage",
+      "extracted/output.txt",
+      "evidence/attack_attempt.txt",
+      "evidence/solve_cid7.py"
+    ],
+    "notes": "Recovered the approximate factor from hint/D, used Sage univariate Coppersmith on q0 + x to factor n, then decrypted the Goldwasser-Micali bit list with Legendre symbols."
+  }
+]

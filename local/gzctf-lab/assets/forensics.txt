@@ -1,0 +1,3 @@
+PCAP placeholder for local forensics coverage.
+flag{local_forensics_static_ok}
+

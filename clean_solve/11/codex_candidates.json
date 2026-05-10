@@ -1,0 +1,13 @@
+[
+  {
+    "challenge_id": "draft",
+    "candidate": "picoCTF{1n_7h3_|<3y_of_f911a486}",
+    "confidence": "high",
+    "evidence_paths": [
+      "extracted/keygenme-trial.py",
+      "evidence/keygen_derivation.txt"
+    ],
+    "submit_recommendation": "never_direct_submit",
+    "notes": "Static analysis: the bundled trial program's check_key body verifies key[i] against sha256('GOUGH').hexdigest()[N] for N in [4,5,3,6,2,7,1,8]. Derivation persisted to evidence/keygen_derivation.txt."
+  }
+]

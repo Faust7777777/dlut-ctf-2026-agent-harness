@@ -37,7 +37,11 @@ const fs = require("fs");
 const path = require("path");
 const http = require("http");
 const https = require("https");
+const crypto = require("crypto");
+const readline = require("readline");
 const { chromium } = require("playwright");
+
+const PROJECT_ROOT = path.resolve(__dirname, "..");
 
 const DEFAULT_LOOKUP_URL = "http://127.0.0.1:8765/lookup_v2";
 const DEFAULT_SCORE_THRESHOLD = 92;
@@ -77,6 +81,33 @@ const RISKY_NOTES_PREFIX = [
   "judge_unknown_token",
 ];
 
+// `--static-fallback-on-risk` recovery rules.  When the user asserts
+// the on-page exam was imported from our own bank (so per-question
+// answers in --answers can be trusted), a non-auto lookup plan whose
+// reason matches one of these can be recovered via the static answers
+// file.  The list is intentionally narrow: it covers only "engine
+// could not find the answer" cases, not "engine found something
+// suspicious" cases.
+const STATIC_FALLBACK_RECOVERABLE_REASONS_EXACT = new Set([
+  "lookup_no_match",
+  "no_answer_letters",
+  "letter_index_map_incomplete",
+  "multi_match_failed",
+]);
+const STATIC_FALLBACK_BLOCK_NOTES_EXACT = new Set([
+  "negation_mismatch",
+]);
+const STATIC_FALLBACK_BLOCK_NOTES_PREFIX = [
+  "manual_review_required",
+];
+const STATIC_FALLBACK_RECOVERABLE_RISKY_NOTES_EXACT = new Set([
+  "multi_match_failed",
+  "single_option_close_second",
+]);
+const STATIC_FALLBACK_RECOVERABLE_RISKY_NOTES_PREFIX = [
+  "multi_partial_match",
+];
+
 function parseArgs(argv) {
   const out = {
     headed: true,
@@ -95,6 +126,9 @@ function parseArgs(argv) {
     scoreThreshold: DEFAULT_SCORE_THRESHOLD,
     waitHumanAuth: false,
     humanAuthTimeoutSec: 600,
+    staticFallbackOnRisk: false,
+    pauseBeforeClose: false,
+    paperManifest: "",
   };
   for (let i = 2; i < argv.length; i += 1) {
     const arg = argv[i];
@@ -123,6 +157,11 @@ function parseArgs(argv) {
     } else if (arg === "--identity") out.identity = argv[++i];
     else if (arg === "--wait-human-auth") out.waitHumanAuth = true;
     else if (arg === "--human-auth-timeout") out.humanAuthTimeoutSec = Number(argv[++i]);
+    else if (arg === "--static-fallback-on-risk") out.staticFallbackOnRisk = true;
+    else if (arg === "--no-static-fallback-on-risk") out.staticFallbackOnRisk = false;
+    else if (arg === "--pause-before-close") out.pauseBeforeClose = true;
+    else if (arg === "--no-pause-before-close") out.pauseBeforeClose = false;
+    else if (arg === "--paper-manifest") out.paperManifest = argv[++i];
     else if (arg === "-h" || arg === "--help") out.help = true;
     else throw new Error(`unknown arg: ${arg}`);
   }
@@ -137,8 +176,27 @@ function usage() {
                                   [--submit|--no-submit] [--dry-run]
 
 Source of answers (priority order):
+  --paper-manifest <path>
+                  Per-paper manifest with bank sha256 + verified_override
+                  list.  Required when --static-fallback-on-risk is set;
+                  enforces the "same-bank" trust boundary.  See
+                  examples/wjx_paper_manifest.example.json for schema.
   --lookup-url    HTTP service exposing POST /lookup_v2 (default ${DEFAULT_LOOKUP_URL})
-  --answers       static JSON fallback (only used if lookup unreachable)
+  --answers       static JSON fallback (used when lookup unreachable)
+  --static-fallback-on-risk
+                  Also use --answers when lookup returns
+                  recoverable-but-non-auto reasons (lookup_no_match,
+                  no_answer_letters, low stem_score, multi_match_failed,
+                  multi_partial_match, single_option_close_second).
+                  Hard blocks: negation_mismatch, manual_review_required:*.
+                  REQUIRES --paper-manifest with matching bank sha256.
+
+Decision priority (per question):
+  1. verified_override from manifest        (trumps lookup hard-block)
+  2. lookup auto-click  (high-conf, no risk)
+  3. static fallback    (--static-fallback-on-risk + manifest verified)
+  4. LLM suggestion     (suggestion-only, never auto-click; future tier)
+  5. human review       (highlight only)
 
 Auto-select gating:
   Only auto-click when stem_score >= --score-threshold (default ${DEFAULT_SCORE_THRESHOLD})
@@ -151,6 +209,20 @@ Human-in-the-loop:
 
 Defaults:
   --auto-select on, --submit off, --dry-run off, --headless off`;
+}
+
+function waitForEnter(prompt) {
+  if (!process.stdin.isTTY) {
+    console.error(`${prompt} stdin is not interactive; leaving browser open until process is terminated.`);
+    return new Promise(() => {});
+  }
+  const rl = readline.createInterface({ input: process.stdin, output: process.stderr });
+  return new Promise((resolve) => {
+    rl.question(prompt, () => {
+      rl.close();
+      resolve();
+    });
+  });
 }
 
 function safeReadAnswers(file) {
@@ -192,6 +264,25 @@ function normalizeText(s) {
     .replace(/\s+/g, "")
     .replace(/[，。、""''：:；;！？!?（）()[\]【】《》<>]/g, "")
     .toLowerCase();
+}
+
+function cleanWjxStemForLookup(s) {
+  return String(s || "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/^\*?\s*\d+\s*[\.\u3001]\s*/, "")
+    .replace(/\s*\[(?:Multiple|Single|Judge|单选题|多选题|判断题)\]\s*$/i, "")
+    .trim();
+}
+
+function cleanWjxOptionForLookup(s) {
+  return String(s || "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/^[A-Z]\s*[\u3001\.\uff0e\uff1a:]\s*/i, "")
+    .replace(/^\s*[\[(（【]\s*正确\s*[\])）】]\s*/, "")
+    .replace(/\s*[\[(（【]\s*正确答案\s*[\])）】]\s*$/i, "")
+    .trim();
 }
 
 function parseIdentity(value) {
@@ -367,12 +458,31 @@ async function extractQuestions(page) {
       return String(s || "").replace(/\s+/g, " ").trim();
     }
 
+    function cleanWjxStemForLookup(s) {
+      return String(s || "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .replace(/^\*?\s*\d+\s*[\.\u3001]\s*/, "")
+        .replace(/\s*\[(?:Multiple|Single|Judge|单选题|多选题|判断题)\]\s*$/i, "")
+        .trim();
+    }
+
+    function cleanWjxOptionForLookup(s) {
+      return String(s || "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .replace(/^[A-Z]\s*[\u3001\.\uff0e\uff1a:]\s*/i, "")
+        .replace(/^\s*[\[(（【]\s*正确\s*[\])）】]\s*/, "")
+        .replace(/\s*[\[(（【]\s*正确答案\s*[\])）】]\s*$/i, "")
+        .trim();
+    }
+
     function optionTextFrom(el) {
       const clone = el.cloneNode(true);
       clone
         .querySelectorAll("input, i, em, span.jqradio, span.jqcheck")
         .forEach((n) => n.remove());
-      return clean(clone.innerText || clone.textContent || "");
+      return cleanWjxOptionForLookup(clean(clone.innerText || clone.textContent || ""));
     }
 
     function inferNumber(block, fallback) {
@@ -419,7 +529,7 @@ async function extractQuestions(page) {
           };
         })
         .filter((x) => x.text);
-      const stem =
+      const rawStem =
         titleText ||
         clean(block.innerText || block.textContent || "")
           .split("\n")
@@ -427,7 +537,7 @@ async function extractQuestions(page) {
         "";
       return {
         number: inferNumber(block, i + 1),
-        stem,
+        stem: cleanWjxStemForLookup(rawStem),
         optionCount: options.length,
         options,
       };
@@ -813,9 +923,19 @@ function buildClickPlanFromStatic(staticMatch, options) {
   }
   const indexes = [];
   for (const tok of staticMatch.row.answer || []) {
-    const upper = String(tok).toUpperCase();
     let idx = -1;
-    if (/^[A-Za-z]$/.test(tok)) idx = upper.charCodeAt(0) - "A".charCodeAt(0);
+    // 1. Single-letter answer (A/B/C/D/...).
+    if (/^[A-Za-z]$/.test(tok)) {
+      idx = String(tok).toUpperCase().charCodeAt(0) - "A".charCodeAt(0);
+      if (idx >= options.length) idx = -1;
+    }
+    // 2. Judge-polarity answer (对/错/正确/错误/T/F/是/否/...).  Mirrors
+    //    the High-1 fix: the page may render the opposite synonym from
+    //    what the answer key uses.
+    if (idx < 0 && judgeOptionPolarity(tok)) {
+      idx = judgeLabelToIndex(tok, options);
+    }
+    // 3. Free-form label substring match.
     if (idx < 0) idx = answerLabelToIndex(tok, options);
     if (idx >= 0 && idx < options.length && !indexes.includes(idx)) indexes.push(idx);
   }
@@ -823,6 +943,196 @@ function buildClickPlanFromStatic(staticMatch, options) {
     return { auto: false, reason: "static_letter_index_map_incomplete", indexes };
   }
   return { auto: staticMatch.score >= 92, reason: `static_match_${staticMatch.score}`, indexes };
+}
+
+function pickStaticAnswerByNumber(question, answerRows) {
+  // High-trust path used only when --static-fallback-on-risk is on:
+  // the page is known to be the same set we exported, so a number
+  // collision means the answer row applies.
+  if (!question || question.number == null) return null;
+  for (const row of answerRows || []) {
+    if (row.number != null && Number(row.number) === Number(question.number)) {
+      return { row, score: 100 };
+    }
+  }
+  return null;
+}
+
+// -----------------------------------------------------------------------
+// Paper manifest (Tier 1) — per-paper sidecar that:
+//   1. carries a bank sha256, used to gate --static-fallback-on-risk
+//   2. carries verified_overrides, the highest-priority decision tier,
+//      authoritative even over lookup hard-blocks like negation_mismatch
+//
+// Schema:
+//   {
+//     "paper_id": "mBfE06C",
+//     "url": "...",
+//     "bank": { "path": "data/processed/question_bank_merged.json",
+//               "sha256": "abc..." },
+//     "static_answers_path": "examples/dlut_bank_wjx_import_300_answers.json",
+//     "verified_overrides": [
+//       { "number": 7, "qid": "2020-content-0042",
+//         "answer": ["B"], "reason": "verified during 5/8 dry-run" }
+//     ]
+//   }
+// -----------------------------------------------------------------------
+
+function _resolveProjectPath(p) {
+  if (!p) return null;
+  return path.isAbsolute(p) ? p : path.resolve(PROJECT_ROOT, p);
+}
+
+function loadPaperManifest(manifestPath) {
+  if (!manifestPath) return null;
+  let raw;
+  try {
+    raw = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  } catch (err) {
+    throw new Error(`paper manifest unreadable: ${manifestPath} (${err.message})`);
+  }
+  // Prefer the nested ``static_answers: {path, sha256}`` shape; fall
+  // back to the legacy flat ``static_answers_path`` for older manifests
+  // (those will fail the hash check below — same outcome, clearer error).
+  const nestedStatic = raw.static_answers || null;
+  const legacyStaticPath = raw.static_answers_path || null;
+  const staticPath =
+    nestedStatic?.path || legacyStaticPath || null;
+  return {
+    raw,
+    paperId: raw.paper_id || "?",
+    bankPath: _resolveProjectPath(raw.bank?.path),
+    bankSha256Expected: raw.bank?.sha256 || null,
+    staticAnswersPath: _resolveProjectPath(staticPath),
+    staticAnswersSha256Expected: nestedStatic?.sha256 || null,
+    verifiedOverrides: Array.isArray(raw.verified_overrides) ? raw.verified_overrides : [],
+  };
+}
+
+function verifyManifestBankHash(manifest) {
+  if (!manifest) return { ok: false, reason: "no_manifest" };
+  const { bankPath, bankSha256Expected } = manifest;
+  if (!bankPath) return { ok: false, reason: "manifest_missing_bank_path" };
+  if (!bankSha256Expected) return { ok: false, reason: "manifest_missing_bank_sha256" };
+  let actual;
+  try {
+    actual = crypto.createHash("sha256").update(fs.readFileSync(bankPath)).digest("hex");
+  } catch (err) {
+    return { ok: false, reason: `bank_read_error:${err.code || err.message}` };
+  }
+  if (actual !== bankSha256Expected) {
+    return { ok: false, reason: "hash_mismatch", actual, expected: bankSha256Expected };
+  }
+  return { ok: true, reason: "match", actual, expected: bankSha256Expected };
+}
+
+function verifyStaticAnswersHash(manifest, providedAnswersPath) {
+  // Closes the "same-bank" trust boundary: even with a verified bank
+  // hash, the answers file driving static fallback must match the
+  // manifest's recorded sha256.  Otherwise the operator can plug in a
+  // different answers JSON and silently override fallback decisions.
+  if (!manifest) return { ok: false, reason: "no_manifest" };
+  const expected = manifest.staticAnswersSha256Expected;
+  if (!expected) {
+    return { ok: false, reason: "manifest_missing_static_answers_sha256" };
+  }
+  const target = providedAnswersPath
+    ? _resolveProjectPath(providedAnswersPath)
+    : manifest.staticAnswersPath;
+  if (!target) return { ok: false, reason: "no_answers_path" };
+  let actual;
+  try {
+    actual = crypto.createHash("sha256").update(fs.readFileSync(target)).digest("hex");
+  } catch (err) {
+    return { ok: false, reason: `answers_read_error:${err.code || err.message}` };
+  }
+  if (actual !== expected) {
+    return { ok: false, reason: "static_answers_hash_mismatch", actual, expected, path: target };
+  }
+  return { ok: true, reason: "match", actual, expected, path: target };
+}
+
+function pickVerifiedOverride(question, manifest) {
+  if (!manifest || !Array.isArray(manifest.verifiedOverrides)) return null;
+  if (!question || question.number == null) return null;
+  for (const o of manifest.verifiedOverrides) {
+    if (o && o.number != null && Number(o.number) === Number(question.number)) {
+      return o;
+    }
+  }
+  return null;
+}
+
+function buildClickPlanFromOverride(override, options) {
+  if (!override || !Array.isArray(override.answer)) return null;
+  const indexes = [];
+  for (const tok of override.answer) {
+    let idx = -1;
+    if (/^[A-Za-z]$/.test(tok)) {
+      idx = String(tok).toUpperCase().charCodeAt(0) - "A".charCodeAt(0);
+      // Mirror the static-fallback fix: out-of-bounds single letters
+      // (e.g. "T" / "F" against a 2-option judge page) are polarity
+      // tokens, not position indexes.  Reset so the polarity branch
+      // below can route them to 对/错 / 正确/错误.
+      if (idx >= options.length) idx = -1;
+    }
+    if (idx < 0 && judgeOptionPolarity(tok)) {
+      idx = judgeLabelToIndex(tok, options);
+    }
+    if (idx < 0) idx = answerLabelToIndex(tok, options);
+    if (idx >= 0 && idx < options.length && !indexes.includes(idx)) indexes.push(idx);
+  }
+  if (indexes.length !== override.answer.length) {
+    return {
+      auto: false,
+      reason: "override_letter_index_map_incomplete",
+      indexes,
+      lookupNotes: [],
+      fromOverride: true,
+    };
+  }
+  // verified_override is by definition human-vetted truth: it is allowed
+  // to bypass lookup hard-blocks like negation_mismatch.  See B1 in
+  // docs/opus_next_handoff.md §"问卷星导入稿、原题库、运行时兜底三层分离".
+  return {
+    auto: true,
+    reason: `verified_override${override.reason ? `:${String(override.reason).slice(0, 60)}` : ""}`,
+    indexes,
+    lookupNotes: [],
+    fromOverride: true,
+  };
+}
+
+function isLookupRecoverableViaStatic(plan) {
+  if (!plan || plan.auto) return false;
+
+  const notes = plan.lookupNotes || [];
+  // Hard block: never recover via static when the lookup explicitly
+  // flagged the question as semantically risky.
+  for (const note of notes) {
+    const s = String(note);
+    if (STATIC_FALLBACK_BLOCK_NOTES_EXACT.has(s)) return false;
+    if (STATIC_FALLBACK_BLOCK_NOTES_PREFIX.some((p) => s.startsWith(p))) return false;
+  }
+
+  const reason = String(plan.reason || "");
+  if (STATIC_FALLBACK_RECOVERABLE_REASONS_EXACT.has(reason)) return true;
+  if (reason.startsWith("stem_score ")) return true;
+
+  if (reason.startsWith("risky_notes:")) {
+    // Only recover ambiguity classes that the operator can safely
+    // override with a same-import static answer file.  Semantic risk
+    // notes were hard-blocked above.
+    return notes.some((n) => {
+      const s = String(n);
+      if (STATIC_FALLBACK_RECOVERABLE_RISKY_NOTES_EXACT.has(s)) return true;
+      return STATIC_FALLBACK_RECOVERABLE_RISKY_NOTES_PREFIX.some((p) =>
+        s.startsWith(p)
+      );
+    });
+  }
+
+  return false;
 }
 
 function flagRedacted(value) {
@@ -839,6 +1149,55 @@ async function main() {
     return args.help ? 0 : 2;
   }
 
+  // Load the per-paper manifest before any browser work.  When provided,
+  // its bank sha256 is verified against the bank file on disk, its
+  // static_answers.sha256 is verified against whichever answers file
+  // will be used (CLI --answers if provided, otherwise the manifest's
+  // own static_answers.path), and the verified_overrides list will be
+  // consulted as Tier 1 of the decision tree.
+  let manifest = null;
+  let bankHashCheck = { ok: false, reason: "no_manifest" };
+  let staticAnswersHashCheck = { ok: false, reason: "no_manifest" };
+  if (args.paperManifest) {
+    try {
+      manifest = loadPaperManifest(args.paperManifest);
+    } catch (err) {
+      console.error(err.message);
+      return 5;
+    }
+    bankHashCheck = verifyManifestBankHash(manifest);
+  }
+
+  // If the operator did not pass --answers but the manifest specifies a
+  // static_answers.path, adopt it (manifest is the canonical source of
+  // truth for this paper).  Done BEFORE the answers-hash check so that
+  // verifyStaticAnswersHash hashes the actual file we'll use.
+  if (!args.answers && manifest?.staticAnswersPath) {
+    args.answers = manifest.staticAnswersPath;
+  }
+
+  if (manifest) {
+    staticAnswersHashCheck = verifyStaticAnswersHash(manifest, args.answers);
+  }
+
+  // Static fallback now requires a manifest with BOTH a verified bank
+  // hash AND a verified static-answers hash.  This closes the
+  // "same-bank" trust boundary: the answers file driving fallback
+  // clicks must be the exact one recorded at import time.
+  if (
+    args.staticFallbackOnRisk &&
+    (!bankHashCheck.ok || !staticAnswersHashCheck.ok)
+  ) {
+    console.error(
+      `--static-fallback-on-risk requires --paper-manifest with matching ` +
+      `bank+static_answers sha256. ` +
+      `manifest_loaded=${!!manifest} ` +
+      `bank_hash=${bankHashCheck.reason} ` +
+      `answers_hash=${staticAnswersHashCheck.reason}`
+    );
+    return 6;
+  }
+
   const answerRows = safeReadAnswers(args.answers);
   const identity = parseIdentity(args.identity);
   const browser = await chromium.launch({ headless: !args.headed });
@@ -853,6 +1212,12 @@ async function main() {
     score_threshold: args.scoreThreshold,
     lookup_url: args.lookupUrl,
     static_answers_count: answerRows.length,
+    static_fallback_on_risk: args.staticFallbackOnRisk,
+    paper_manifest: args.paperManifest || null,
+    paper_id: manifest?.paperId || null,
+    verified_overrides_count: manifest?.verifiedOverrides?.length || 0,
+    bank_hash_check: bankHashCheck.reason,
+    static_answers_hash_check: staticAnswersHashCheck.reason,
     password_source: args.passwordSourceLabel || "",
     identity_keys: Object.keys(identity),
     wait_human_auth: args.waitHumanAuth,
@@ -906,8 +1271,56 @@ async function main() {
     let plan;
     let lookupOutcome = null;
     let staticMatch = null;
+    let verifiedOverride = null;
 
-    if (args.lookupUrl) {
+    // Tier 1: verified_override (per-paper manifest).  Trumps everything
+    // including lookup hard-blocks like negation_mismatch — the override
+    // is by definition human-vetted truth for this specific paper.
+    if (manifest) {
+      verifiedOverride = pickVerifiedOverride(q, manifest);
+      if (verifiedOverride) {
+        const overridePlan = buildClickPlanFromOverride(verifiedOverride, q.options);
+        if (overridePlan && overridePlan.auto) {
+          appendLog(args.log, {
+            event_type: "wjx_verified_override_used",
+            question_no: q.number,
+            stem_excerpt: stemExcerpt,
+            override_qid: verifiedOverride.qid || null,
+            override_answer: verifiedOverride.answer,
+            override_reason_excerpt: (verifiedOverride.reason || "").slice(0, 80),
+          });
+          plan = overridePlan;
+        } else if (overridePlan) {
+          // Override exists but couldn't be mapped to current page
+          // options.  This is exactly the case where automation must
+          // STOP — the only authoritative source for this question
+          // disagreed with the page (variant text, shuffled label
+          // formatting, page mutation, etc.).  Force the question into
+          // highlight-only/no-action; do NOT silently fall through to
+          // lookup or static fallback (per Codex review).
+          appendLog(args.log, {
+            event_type: "wjx_verified_override_unmapped",
+            question_no: q.number,
+            stem_excerpt: stemExcerpt,
+            reason: overridePlan.reason,
+            override_qid: verifiedOverride.qid || null,
+            override_answer: verifiedOverride.answer,
+            page_option_count: q.options.length,
+          });
+          plan = {
+            auto: false,
+            reason: `verified_override_unmapped:${overridePlan.reason}`,
+            indexes: overridePlan.indexes || [],
+            lookupNotes: [],
+            fromOverride: true,
+            forcedHumanReview: true,
+          };
+        }
+      }
+    }
+
+    // Tier 2: lookup_v2 (skipped when a verified_override already won).
+    if (!plan && args.lookupUrl) {
       const probe = await decideViaLookup(q, args.lookupUrl);
       if (probe.ok) {
         lookupOutcome = probe.lookup;
@@ -921,6 +1334,44 @@ async function main() {
         });
       }
     }
+
+    // Static-answers fallback when lookup returned a recoverable
+    // non-auto plan AND the operator explicitly opted in.  The trust
+    // anchor is question.number → static answers JSON: the JSON was
+    // generated alongside the import, so a number collision is taken
+    // as ground truth.
+    if (
+      plan &&
+      !plan.auto &&
+      args.staticFallbackOnRisk &&
+      answerRows.length > 0 &&
+      isLookupRecoverableViaStatic(plan)
+    ) {
+      const fallbackMatch =
+        pickStaticAnswerByNumber(q, answerRows) || pickStaticAnswer(q, answerRows);
+      if (fallbackMatch) {
+        const fallbackPlan = buildClickPlanFromStatic(fallbackMatch, q.options);
+        if (fallbackPlan.auto) {
+          appendLog(args.log, {
+            event_type: "wjx_static_fallback_used",
+            question_no: q.number,
+            stem_excerpt: stemExcerpt,
+            lookup_reason: plan.reason,
+            lookup_notes: plan.lookupNotes || [],
+            static_match_score: fallbackMatch.score,
+            static_answer_id: fallbackMatch.row.id,
+          });
+          plan = {
+            ...fallbackPlan,
+            lookupNotes: plan.lookupNotes || [],
+            reason: `static_fallback:${fallbackPlan.reason}`,
+            fallbackUsed: "static_on_risk",
+          };
+          staticMatch = fallbackMatch;
+        }
+      }
+    }
+
     if (!plan) {
       staticMatch = pickStaticAnswer(q, answerRows);
       plan = buildClickPlanFromStatic(staticMatch, q.options);
@@ -930,15 +1381,27 @@ async function main() {
       event_type: "wjx_answer_decision",
       question_no: q.number,
       stem_excerpt: stemExcerpt,
-      branch: lookupOutcome?.branch || "static",
-      qid: lookupOutcome?.qid || staticMatch?.row?.id || null,
-      score: lookupOutcome?.stem_score || staticMatch?.score || 0,
-      answer_letters: lookupOutcome?.answer_letters || (staticMatch?.row?.answer ?? []),
+      branch: verifiedOverride
+        ? "verified_override"
+        : (lookupOutcome?.branch || (staticMatch ? "static" : "unknown")),
+      qid:
+        verifiedOverride?.qid ||
+        lookupOutcome?.qid ||
+        staticMatch?.row?.id ||
+        null,
+      score: verifiedOverride
+        ? 100
+        : (lookupOutcome?.stem_score || staticMatch?.score || 0),
+      answer_letters:
+        verifiedOverride?.answer ||
+        lookupOutcome?.answer_letters ||
+        (staticMatch?.row?.answer ?? []),
       auto_clicked: false,
       auto_select_enabled: args.autoSelect,
       reason: plan.reason,
       notes: plan.lookupNotes || [],
       indexes: plan.indexes,
+      from_override: !!verifiedOverride && plan.fromOverride === true,
     };
 
     if (args.dryRun) {
@@ -982,25 +1445,32 @@ async function main() {
     await page.screenshot({ path: args.screenshot, fullPage: true });
   }
 
-  console.log(
-    JSON.stringify(
-      {
-        questions: questions.length,
-        summary,
+	  console.log(
+	    JSON.stringify(
+	      {
+	        questions: questions.length,
+	        summary,
         submitted_by: submitResult ? submitResult.selector : null,
         submit_result: submitResult,
       },
       null,
-      2
-    )
-  );
-  await browser.close();
-  return 0;
-}
+	      2
+	    )
+	  );
+	  if (args.pauseBeforeClose) {
+	    appendLog(args.log, { event_type: "wjx_pause_before_close", action: "waiting_for_operator" });
+	    await waitForEnter(
+	      "WJX assist paused with browser open. Finish manual review/submission, then press Enter here to close browser..."
+	    );
+	  }
+	  await browser.close();
+	  return 0;
+	}
 
 // Pure-logic exports for unit tests; do not affect the CLI path when
 // this file is invoked directly via `node scripts/wjx_exam_assist.js`.
 module.exports = {
+  parseArgs,
   JUDGE_TRUE_LABELS,
   JUDGE_FALSE_LABELS,
   PASSWORD_USED_TOKENS,
@@ -1018,8 +1488,20 @@ module.exports = {
   buildClickPlanFromLookup,
   buildClickPlanFromStatic,
   pickStaticAnswer,
+  pickStaticAnswerByNumber,
+  isLookupRecoverableViaStatic,
+  loadPaperManifest,
+  verifyManifestBankHash,
+  verifyStaticAnswersHash,
+  pickVerifiedOverride,
+  buildClickPlanFromOverride,
+  cleanWjxStemForLookup,
+  cleanWjxOptionForLookup,
   flagRedacted,
   redactSensitive,
+  STATIC_FALLBACK_RECOVERABLE_REASONS_EXACT,
+  STATIC_FALLBACK_BLOCK_NOTES_EXACT,
+  STATIC_FALLBACK_BLOCK_NOTES_PREFIX,
 };
 
 if (require.main === module) {
